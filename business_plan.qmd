@@ -1,0 +1,257 @@
+---
+title: "DaWetrest Business Plan"
+author: "Mislav Sagovac"
+date: last-modified
+format: html
+execute:
+  echo: false
+  warning: false
+editor: visual
+bibliography: reference.bib
+---
+
+
+```{r}
+library(data.table)
+library(httr)
+library(jsonlite)
+library(flextable)
+library(ggplot2)
+library(stringr)
+library(lubridate)
+
+# Constants
+URL = "https://sudreg-data.gov.hr/api/javni/"
+```
+
+```{r}
+# Make the POST request
+token = POST(
+  "https://sudreg-data.gov.hr/api/oauth/token",
+  authenticate("wTVAwMD-mfGsV_q-mcTRMw..", "1uPjdUWOqkJ1HgDGrIvW0w.."),
+  body = list(grant_type = "client_credentials"),
+  encode = "form",
+  config(ssl_verifypeer = FALSE)
+)
+token = content(token)
+```
+
+```{r}
+# Get data from court public registry
+get_sreg = function(url) {
+  res = GET(url,
+            add_headers("Authorization" = paste0("Bearer ", token$access_token),
+                        "Content-Type" = "application/json"))
+  content(res)
+}
+
+# Get data from court public registry in a loop
+get_sreg_loop <- function(tag = "subjekti", by = 10000) {
+  offset_seq = seq(0, 360000, by = by)
+  offset_seq = format(offset_seq, scientific = FALSE)
+  offset_seq = gsub("\\s+", "", offset_seq)
+  urls = lapply(offset_seq, function(x) {
+    modify_url(
+      paste0(URL, tag),
+      query = list(
+        offset = x,
+        limit = format(by, scientific = FALSE),
+        only_active = FALSE
+      )
+    )
+  })
+  res_l = lapply(urls, get_sreg)
+  res_l = res_l[!sapply(res_l, function(x) length(x) == 0)]
+  res_l = lapply(res_l, function(l) rbindlist(lapply(l, as.data.table), fill = TRUE))
+  rbindlist(res_l, fill = TRUE)
+}
+
+# # API endpoints
+# endpoints = GET(paste0(URL, "open_api"),
+#                 add_headers("Authorization" = paste0("Bearer ", token$access_token),
+#                             "Content-Type" = "application/json"))
+# content(endpoints, as = "text", content = "application/json")
+```
+
+```{r}
+#| cache: true
+
+# Business subjects
+subjects = get_sreg_loop("subjekti")
+
+# Remove rows with missing MBS
+nrow(subjects[is.na(mbs)])
+subjects = subjects[!is.na(mbs)]
+subjects_active = subjects[status == 1]
+
+# Headquarters
+headq = get_sreg_loop(tag = "sjedista")
+nrow(headq[is.na(mbs)])
+headq = headq[!is.na(mbs)]
+
+# Core business
+cores = get_sreg_loop("pretezite_djelatnosti")
+nrow(cores[is.na(mbs)])
+cores = cores[!is.na(mbs)]
+
+# Industry
+industry = get_sreg_loop("predmeti_poslovanja")
+nrow(industry[is.na(mbs)])
+industry = industry[!is.na(mbs)]
+
+# Evidence activities
+activities = get_sreg_loop("evidencijske_djelatnosti")
+nrow(activities[is.na(mbs)])
+activities = activities[!is.na(mbs)]
+
+# NKD
+nkd = get_sreg_loop("nacionalna_klasifikacija_djelatnosti")
+
+# Short name
+short_names = get_sreg_loop("skracene_tvrtke")
+nrow(activities[is.na(mbs)])
+activities = activities[!is.na(mbs)]
+
+# Possible additional endpoints
+# predmeti_poslovanja
+# evidencijske_djelatnosti
+
+# Merge sreg data
+dt = Reduce(
+  function(x, y) merge(x, y, by = "mbs", all.x = TRUE, all.y = FALSE),
+  list(subjects, headq)
+)
+
+# Missing values
+dt[, sum(is.na(datum_osnivanja))]
+dt[, sum(is.na(sifra_opcine))]
+# dt[, sum(is.na(nacionalna_klasifikacija_djelatnosti_id))]
+
+# Clean var classes
+date_format_ = "%Y-%m-%dT%H:%M:%S"
+dt[, datum_osnivanja := as.POSIXct(datum_osnivanja, format = date_format_)]
+dt[, datum_brisanja  := as.POSIXct(datum_brisanja, format = date_format_)]
+
+# Clean OIB column
+dt[, oib := str_pad(oib, width = 11, side = "left", pad = "0")]
+```
+
+```{r}
+# import data
+fina_2022 = fread(file.path("data_ignore", "RGFI_javna_objava_2022.csv"), 
+                  encoding = "UTF-8")
+
+# Clean OIB column
+fina_2022[, oib := str_pad(oib, width = 11, side = "left", pad = "0")]
+
+# extract important variables
+fina_dt = fina_2022[, .(oib, mb, prihodi_2021 = aop_pg2_127, prihodi_2022 = aop_tg2_127)]
+```
+
+
+
+```{r}
+# COURT REGISTRY ANALYSIS -------------------------------------------------
+# filter municipalities
+# 914:  Draž
+# 1104: Erdut
+# 1953: Kneževi Vinogradi
+# 213:  Bilje
+# dt[grepl("Kneževi", naziv_opcine), sifra_opcine]
+opcine_id = c(914, 1104, 213, 1953)
+dunav = dt[sifra_opcine %in% opcine_id]
+dunav = merge(dunav, fina_dt, by = "oib", all.x = TRUE, all.y = FALSE)
+# dunav_fina = merge(dunav, fina_dt, by = "oib", all.x = TRUE, all.y = FALSE)
+```
+
+```{r}
+# Convert dunav to panel format
+panel = dunav[, .(datum_osnivanja = as.Date(datum_osnivanja), 
+                  datum_brisanja = as.Date(datum_brisanja), 
+                  mbs)]
+panel = na.omit(panel, cols = c("datum_osnivanja"))
+panel[is.na(datum_brisanja), datum_brisanja := Sys.Date() - 5]
+panel = panel[, .(month = seq.Date(datum_osnivanja, datum_brisanja, by = 1)), 
+              by = mbs]
+panel[, month := ceiling_date(month, "month")-1]
+panel = unique(panel)
+panel = dunav[, .(mbs, naziv_opcine, glavna_djelatnost, prihodi = prihodi_2022)][panel, on = "mbs"]
+```
+
+## Business activity for Croatian Donau region in Osječko-Baranjska County
+
+....
+
+
+
+```{r}
+#| label: fig-number-firms
+#| fig-cap: Number of business subjects in the court registry
+
+dt_number_firms = panel[month > as.Date("2000-01-01"),
+                        .N,
+                        by = .(naziv_opcine, month)][order(naziv_opcine, month)]
+start_year_month = dt_number_firms[, strftime(min(month), format = "%Y-%m")]
+end_year_month   = dt_number_firms[, strftime(max(month), format = "%Y-%m")]
+number_firms_start_draz = dt_number_firms[naziv_opcine == "Draž" & month == min(month), N]
+number_firms_end_draz   = dt_number_firms[naziv_opcine == "Draž" & month == max(month), N]
+ggplot(dt_number_firms, aes(x = month, y = N, color = naziv_opcine)) +
+  geom_line() +
+  theme_minimal() +
+  labs(
+    title = "Number of business subjects across counties",
+    x = "Date",
+    y = "Number of business subjects",
+    color = "Counties"
+  ) +
+  theme(axis.title.x = element_blank()) +
+  geom_line(data = dt_plot[naziv_opcine == "Draž"], size = 2)
+
+  
+```
+
+We start out  with the number of business subjects for Donau region using the data from the court registry. In figure @fig-number-firms you can see the number of business subjects across counties through time (from `r start_year_month` to `r end_year_month`). We show the results for `r nrow(dunav)` counties, with special emphasis on Draz municipality. We can see that all counties experienced a significant increase in the number of business subjects in the observed period. Municipality Draz have only `r number_firms_start_draz` firms at the beginning of the observed period, but the number of firms increased over time to `r number_firms_end_draz` at the end of the observed period. Compares to other counties, Draz have smallest business activity, while Bilje experienced the highest grow of the number of business subjects. We have to note that number of active business subjects can be biased above, because it is not not uncommon for business subjects to inactive in reality, but not formally in court registry database. For exmaple, it is possible for firm to have 0 employees or no revenues, but still be active in the court registry.
+
+```{r}
+# #| label: fig-number-active-firms
+# #| fig-cap: Number of active business subjects in the court registry
+# 
+# # Make ggplot that shows industry by onth for every naziv_opcine with bar plot
+# dt_plot = panel[month == as.Date("2023-12-31"), 
+#                 .(prihodi = sum(prihodi_2022, na.rm = TRUE)), 
+#                 by = .(naziv_opcine, month, glavna_djelatnost)]
+# dt_plot[is.na(glavna_djelatnost), glavna_djelatnost := "0"]
+# ggplot(dt_plot, aes(x = as.factor(glavna_djelatnost), y = prihodi / 1000)) +
+#   geom_bar(stat = "identity") +
+#   theme_minimal() +
+#   labs(
+#     title = "Number of active business subjects across counties",
+#     x = "Date",
+#     y = "Number of active business subjects",
+#     fill = "Counties"
+#   ) +
+#   theme(axis.title.x = element_blank()) +
+#   facet_wrap(~naziv_opcine, scales = "free_y")
+```
+
+```{r}
+#| label: tab-concentration
+#| tab-cap: Concentration of business activities by industry
+
+# Make ggplot that shows industry by onth for every naziv_opcine with bar plot
+dt_contetration = panel[month == as.Date("2023-12-31") &
+                          !is.na(prihodi)]
+dt_contetration = dt_contetration[, prihodi_ratio := prihodi / sum(prihodi) * 100, 
+                                  by = naziv_opcine]
+setorder(dt_contetration, naziv_opcine, -prihodi_ratio)
+dt_contetration = dt_contetration[, first(.SD, 10), by = naziv_opcine]
+dt_contetration = dcast(dt_contetration, mbsnaziv_opcine ~ , value.var = "prihodi")
+
+```
+
+Next, we will show the concentration of business activities. It is well known from scientific papers that business activities are usually concentrated in a small number of firms. We will use 2 variables to estimate concentration: 1) total revenue and 2) total profit. In table @tab-concentration you can see the results. Following previous logic, we show the results for `r nrow(dunav)` counties, with special emphasis on Draz municipality.
+
+
+
+# q: How to translate nije rijetkost from Croatian to English?
+# a: 
