@@ -1,10 +1,14 @@
 library(data.table)
 library(httr)
 library(jsonlite)
+library(lubridate)
+library(readxl)
+library(stringr)
+library(anytime)
+library(AzureStor)
 
 
-
-# UTILS -------------------------------------------------------------------
+UTILS -------------------------------------------------------------------
 # Globals
 URL       = "https://sudreg-data.gov.hr/api/javni/"
 url_token =  "https://sudreg-data.gov.hr/api/oauth/token"
@@ -159,3 +163,115 @@ dt[sifra_opcine %in% opcine_id, .N, by = postupak]
 # sreg_data[, oib := str_pad(oib, 11, "left", "0")]
 # 
 
+
+# CROATIAN PENSION INSURANCE INSTITUTE ------------------------------------
+# Source: https://www.mirovinsko.hr/hr/statistika/2673
+
+# Create urls
+months_ = seq.Date(
+  as.Date("2020-01-01"), 
+  floor_date(Sys.Date(), unit = "month") %m-% months(1), 
+  by = "month")
+year_month_format = vapply(months_, function(m) {
+  if (data.table::year(m) <= 2020) {
+    x = format.Date(m, "%Y-%m")
+  } else {
+    x = gsub("-0", "-", format.Date(m, "%Y-%m"))
+  }
+  x
+}, character(1))
+urls = paste0(
+  "https://www.mirovinsko.hr/UserDocsImages/statistika/osiguranici-",
+  data.table::year(months_),
+  "/osiguranici-zupanije-opcine-osnove-osiguranja-",
+  year_month_format,
+  ".xlsx"
+)
+
+# Create directory in which we will save the data. add also to .gitignore
+dir_ = "CPII"
+if (!dir.exists(dir_)) {
+  dir.create(dir_)
+}
+
+# Get all documents
+for (u in urls) {
+  # u = urls[1]
+  file_name = gsub(".*ranja-", "", u)
+  GET(u, write_disk(file.path(dir_, file_name), overwrite = TRUE))
+}
+
+# Utils function for parsing tables inside sheet
+parse_excel_file = function(excel_file) {
+  # excel_file = list.files(dir_, full.names = TRUE)[1]
+  excle_tables_l = lapply(1:21, function(sheet_) {
+    print(sheet_)
+    # sheet_ = 17
+    excel_file_to_parse = read_excel(excel_file, sheet = sheet_)
+    sifra_index = c(grep("ifra", excel_file_to_parse[, 1, drop = TRUE]), nrow(excel_file_to_parse))
+    row_indecies = lapply(seq_along(sifra_index[-length(sifra_index)]), function(i) sifra_index[i]:sifra_index[i + 1])
+    excel_tables = lapply(row_indecies, function(il) {
+      read_excel(excel_file, sheet = sheet_, range = cell_rows(il))
+    })
+    excel_tables = lapply(excel_tables, as.data.table)
+    excel_tables = lapply(excel_tables, function(x) x[rowSums(is.na(x)) < ncol(x)])
+    excel_tables = lapply(excel_tables, function(x) {
+      # x = excel_tables[[3]]
+      colnames_1 = zoo::na.locf(unlist(x[1], use.names = FALSE))
+      colnames_3 = unlist(x[3], use.names = FALSE)
+      colnames_3[is.na(colnames_3)] = ""
+      colnames_ = janitor::make_clean_names(paste0(colnames_1, colnames_2))
+      setnames(x, colnames_)
+      colnames(x)[1:2] = c("sifra", "naziv")
+      x
+    })
+    excel_tables = lapply(excel_tables, function(x) x[5:nrow(x)])
+    excel_tables = lapply(excel_tables, function(x) na.omit(x, cols = "sifra"))
+    dt_ = rbindlist(excel_tables, fill = TRUE)
+    dt_ = melt(dt_, id.vars = c("sifra", "naziv"), variable.name = "var", value.name = "value")
+    dt_ = na.omit(dt_)
+    dt_ = dcast(dt_, sifra + naziv ~ var, value.var = "value")
+    dt_ = cbind(zup_code = str_pad(sheet_, width = 2, side = "left", pad = "0"), dt_)
+    dt_
+  })
+  excel_tables_dt = rbindlist(excle_tables_l)
+  excel_tables_dt
+}
+
+# Parse all excel files
+excel_files = list.files(dir_, full.names = TRUE)
+excel_tables_l = lapply(excel_files, parse_excel_file)
+excel_tables_l_ = copy(excel_tables_l)
+excel_tables_l_ = lapply(seq_along(excel_tables_l_), function(i) {
+  excel_tables_l_[[i]][, month := anytime(tools::file_path_sans_ext(basename(excel_files[i])))]
+})
+excel_tables_dt = rbindlist(excel_tables_l_)
+cols_to_integer = colnames(excel_tables_dt)[4:27]
+excel_tables_dt[, (cols_to_integer) := lapply(.SD, as.integer), .SDcols = cols_to_integer]
+
+# English colnames
+eng_column_names = c(
+  "zup_code", "code", "name",
+  "workers_with_legal_entities_men", "workers_with_legal_entities_women", "workers_with_legal_entities_total",
+  "craftsmen_men", "craftsmen_women", "craftsmen_total",
+  "farmers_men", "farmers_women", "farmers_total",
+  "self_employed_professionals_men", "self_employed_professionals_women", "self_employed_professionals_total",
+  "workers_with_physical_persons_men", "workers_with_physical_persons_women", "workers_with_physical_persons_total",
+  "insured_employees_with_international_men", "insured_employees_with_international_women", "insured_employees_with_international_total",
+  "insured_men", "insured_women", "insured_total",
+  "total_men", "total_women", "total_total", "month"
+)
+setnames(excel_tables_dt, eng_column_names)
+
+# Check Draz
+plot(excel_tables_dt[name == "Draž", .(month, workers_with_legal_entities_total)])
+
+# Save localy
+fwrite(excel_tables_dt, file.path("data", "cpii.csv"))
+
+# Save table to Azure blob
+blob_endpoint = "https://contentiobatch.blob.core.windows.net/"
+blob_key = "qdTsMJMGbnbQ5rK1mG/9R1fzfRnejKNIuOv3X3PzxoBqc1wwTxMyUuxNVSxNxEasCotuzHxwXECo79BLv71rPw=="
+bl_endp_key = storage_endpoint(blob_endpoint, blob_key)
+cont = storage_container(bl_endp_key, "dawetrest")
+storage_write_csv(excel_tables_dt, cont, "cpii.csv")
