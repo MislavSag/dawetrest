@@ -1,0 +1,20 @@
+- source: presentation.qmd
+  quarto-pub:
+    - id: 9ef3b45f-ed53-4879-b46b-cc57bfb3b63e
+      url: https://mislav.quarto.pub/business-models-and-data-collection
+- source: business_plan.qmd
+  quarto-pub:
+    - id: c2b2211d-0547-4400-85ef-a5383daaa5fa
+      url: https://mislav.quarto.pub/methodology
+- source: bm_questionnaire.qmd
+  quarto-pub:
+    - id: 519893e6-f932-4b2b-9a6d-3c0c5e8c1393
+      url: https://mislav.quarto.pub/dawetrest-business-model-questionnaire
+- source: methodology.qmd
+  quarto-pub:
+    - id: deca2787-5246-48f8-a39f-54bd9fe93ae1
+      url: https://mislav.quarto.pub/business-models-methodology-e954
+- source: presentation_2025_tulcea.qmd
+  quarto-pub:
+    - id: 177a46e4-cfbd-4b9f-89e5-9537504cafe9
+      url: https://mislav.quarto.pub/presentation_2025_tulcea

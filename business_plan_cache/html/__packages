@@ -1,0 +1,12 @@
+data.table
+httr
+jsonlite
+flextable
+ggplot2
+patchwork
+stringr
+lubridate
+readxl
+janitor
+tabulizer
+eurostat

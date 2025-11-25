@@ -1,0 +1,8 @@
+ENDPOINT=https://contentiobatch.blob.core.windows.net/
+KEY=qdTsMJMGbnbQ5rK1mG/9R1fzfRnejKNIuOv3X3PzxoBqc1wwTxMyUuxNVSxNxEasCotuzHxwXECo79BLv71rPw==
+USER="wTVAwMD-mfGsV_q-mcTRMw.."
+PASS="1uPjdUWOqkJ1HgDGrIvW0w.."
+MYSQL_HOST=91.234.46.219
+MYSQL_PORT=3306
+MYSQL_USER=odvjet12_mislav
+MYSQL_PASSWORD=Contentio0207

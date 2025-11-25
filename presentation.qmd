@@ -1,0 +1,134 @@
+---
+format:
+  revealjs:
+    theme: solarized
+    title-slide: false
+    embed-resources: true
+# format: beamer
+editor: visual
+---
+
+## {background-image="figures/template_first.jpg"}
+
+## Definition and milestones {.smaller background-image="figures/template_5.jpg"}
+
+- **Business model**: A business model describes the rationale of how an organization creates, delivers, and captures value.
+- Milestones in this century:
+  - **2004**: Alexander Osterwalder introduces the Business Model Canvas.
+  - **2010**: Business Model Generation book is published.
+  - **2015**: Business Model Navigator book is published.
+- Software
+  - [Business model navigator](https://businessmodelnavigator.com/){target="_blank"}
+  - [Strategyzer's Business Model Canvas](https://www.strategyzer.com/library/the-business-model-canvas){target="_blank"}
+
+
+## Business model canvas {background-image="figures/template_5.jpg"}
+![](figures/business_model_canvas.png){fig-align=center}
+
+
+## Business models extensions {background-image="figures/template_h1.jpg"}
+
+##  Tripple layer business model (Joyce and Paquin, 2016) {background-image="figures/template_5.jpg"}
+![](figures/Triple-Layered-Business-Model-Canvas-TLBMC-image-from-Joyce-and-Paquin-2016.png){fig-align=center}
+
+## Threebility (Gerlach, 2015) {background-image="figures/template_5.jpg"}
+![](figures/csm_mm1_Threebility_The_Sustainable_Business_Model_Canvas_03146e7333.png){fig-align=center}
+
+::: {.notes}
+- **Triple layer business model**: Focuses on the value proposition, value creation, and value capture layers.
+- **Threebility**: Adds a sustainability layer to the traditional Business Model Canvas.
+:::
+
+## ProGlreg business model (2023) {background-image="figures/template_5.jpg"}
+![](figures/proGIreg_business_model_.png){fig-align=center}
+
+## ISO 59010 circular economy (2024) {background-image="figures/template_5.jpg"}
+![](figures/iso_59010_bm_circular_economy.png){fig-align=center}
+
+## Interviews and surveys following BS {background-image="figures/template_5.jpg"}
+
+[See here](https://mislav.quarto.pub/dawetrest-business-model-questionnaire/){target="_blank"}
+
+## MD demo example {background-image="figures/template_h1.jpg"}
+
+## Value Proposition {background-image="figures/template_5.jpg"}
+
+- **Increasing biodiversity**: Bringing back native species and improving wetlands through water management and the green hatchery.
+- **Climate Resilience**: Carbon sequestration and improving water quality.
+- **Sustainable Development in NBS**: Promoting  regenerative tourism, sports fisheries, and community involvement in restoration efforts.
+
+## Key Partners {background-image="figures/template_5.jpg"}
+
+- **Croatian Waters (HRVODE)**: Hydrological works and floodplain restoration.
+- **University of Zagreb (UZ-FSB)**: Technology development and digital platform management.
+- **CEKOM**: Data collection and strategy development.
+- **Local and Regional Authorities**: Coordination of on-ground activities.
+- **NGOs and SMEs**: Supporting community engagement and eco-tourism.
+
+## Key Resources {background-image="figures/template_5.jpg"}
+
+- **Natural Resources**: Wetlands and native fish species.
+- **Human Resources**: Biodiversity experts, local labor, and scientific researchers.
+- **Technological Resources**: Centralized data repository and monitoring tools.
+- **Financial Resources**: EU Horizon Europe funding.
+- **Green Hatchery Infrastructure**: Aquaculture systems with renewable energy sources.
+
+## Key Activities {background-image="figures/template_5.jpg"}
+
+- **Hydrological Restoration**: Removing barriers and improving water flows.
+- **Green Hatchery Operations**: Cultivating native fish species.
+- **Biodiversity Monitoring**: Digital tools for tracking ecological health.
+- **Community Engagement**: Workshops, citizen science, and local job creation.
+- **Sustainable Aquaculture**: Long-term fishery management and economic development.
+
+## Customer Segments {background-image="figures/template_5.jpg"}
+
+- **Local Communities**: Benefiting from restored ecosystems and new economic opportunities.
+- **Regional and National Authorities**: Supporting environmental and flood management policies?
+- **Environmental Agencies**: Using the DEMO as a model for wetland restoration.
+- **Regenerative tourism community**: Leveraging the restored ecosystems for sustainable tourism.
+
+## Channels {background-image="figures/template_5.jpg"}
+
+- **Digital Platforms**: Website, social media (Facebook, YouTube), and newsletters.
+- **Community Events**: Workshops, and participatory monitoring.
+- **Printed Materials**: Flyers, posters, and press releases.
+- **International Conferences**: Sharing knowledge with the broader scientific and policy communities.
+- **Portal** - Centralized data repository and monitoring tools.
+
+## Revenue Streams {background-image="figures/template_5.jpg"}
+
+- **Regenerative Tourism and Sports Fisheries**: Income from guided tours, fishing permits, and eco-lodging.
+- **Sustainable Aquaculture**: Sale of native fish species to local markets.
+- **Reed and Plant Harvesting**: Sustainable use of wetland plants for bio-based materials.
+- **Environmental Consulting**: Offering expertise in wetland restoration to other regions.
+- **Data API** - subscriptoin on the portal?
+
+
+## Cost Structure {background-image="figures/template_5.jpg"}
+
+- **Restoration Costs**: Hydrological engineering, hatchery operations, and maintenance.
+- **Technology and Monitoring**: Sensors, drones, and data management systems.
+- **Community Engagement**: Workshops, educational programs, and local involvement.
+- **Project Management**: Administrative costs, legal compliance, and project coordination.
+
+
+## Data and tools for dynamic reporting and interactivity {background-image="figures/template_h1.jpg"}
+
+## Data Used in Business Model Preparation {background-image="figures/template_5.jpg"}
+
+- **Environmental Data** - water quality, biodiversity indicators, carbon sequestration data.
+- **Socio-economic Data** - macro data, local employment, business subject dynamics.
+- **Community and Stakeholder Feedback** - community surveys, interviews.
+
+## Data Science principles {.smaller background-image="figures/template_5.jpg"}
+- **Dynamic** - automatic updates when new data is ingested or parameters are changed.
+- **Interactive** - allow users to explore data and insights.
+- **Reproducible** - analyses should be reproducible by other teams using the same datasets and methods.
+- **Automated Data Pipelines** - automate data collection, cleaning, and reporting to ensure consistent updates.
+- **Versioning and Traceability** - track all changes to data, code, and reports to ensure they can be replicated or rolled back.
+- **Open source** - use open-source tools and libraries to ensure transparency and collaboration.
+- **Example** - [MD Demo business model](https://forensis.shinyapps.io/dawetrest/){target="_blank"}
+
+## {background-image="figures/template_last.jpg"}
+

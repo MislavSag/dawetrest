@@ -1,0 +1,13 @@
+name: dawetrest
+title: DaWetRest Business Model
+username: forensis
+account: forensis
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 13031783
+bundleId: 9234790
+url: https://forensis.shinyapps.io/dawetrest/
+version: 1
+quarto_version: 1.5.47
+quarto_engines: knitr
+serverRender: FALSE

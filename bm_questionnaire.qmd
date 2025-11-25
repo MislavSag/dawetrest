@@ -1,0 +1,82 @@
+---
+title: "DaWetRest Business Model Questionnaire"
+author: "AIH"
+format: pdf
+editor: visual
+---
+
+## Flourishing Business Canvas Questionnaire
+
+This questionnaire is structured around the **Flourishing Business Canvas** to guide the co-creation of a sustainable business model for the Dawetrest project. Each section corresponds to one of the 17 components of the Flourishing Business Canvas. Project partners and other stakeholders should provide open-ended, responses, considering values, goals, stakeholder roles, ecosystem impacts, and both social and environmental factors. There are no right or wrong answers – the aim is to gather rich insights from project partners and stakeholders to inform our collaborative design.
+
+### Ecosystem Actors
+
+**Questoin (Q):** Who do you consider the key **ecosystem actors** surrounding the Dawetrest initiative? (Think broadly about all people, organizations, communities, and environmental entities that **directly or indirectly** interact with or are impacted by the project. Why are these actors important in the context of Dawetrest?)
+
+### Needs
+
+**Q:** What are the **needs** or problems of the above-mentioned actors that Dawetrest aims to address or fulfill? (Consider **functional needs** as well as deeper **social or environmental needs** – e.g. community development, climate resilience, economic opportunities – that align with Dawetrest’s mission.)
+
+### Stakeholders
+
+**Q:** Among the ecosystem actors, who are the **key stakeholders** that Dawetrest will directly engage with or serve? (Identify the groups or partners that have a **stake** in the project’s success – for example, beneficiaries, local communities, partner organizations, funders, government bodies. How is each stakeholder group involved with Dawetrest, and what roles do they play or interests do they represent?)
+
+### Relationships
+
+**Q:** What kind of **relationships** should Dawetrest establish and maintain with each stakeholder group? (Describe the nature of engagement – e.g. collaborative partnerships, community outreach, customer service, volunteer networks. How will we build **trust and long-term engagement**?)
+
+### Channels
+
+**Q:** Through what **channels** will Dawetrest reach out to and interact with its stakeholders? (Think about communication and delivery channels – e.g. **online platforms, workshops, local meetings, social media, pilot projects, reports** – and how each channel can effectively engage stakeholders or deliver Dawetrest’s services.)
+
+### Value Co-Creations
+
+**Q:** What **value** is Dawetrest **co-creating** with and for its stakeholders? (Outline the **positive outcomes** and benefits the project will collaboratively generate. For each key stakeholder or actor, consider how Dawetrest’s activities create tangible or intangible value.)
+
+### Value Co-Destructions
+
+**Q:** What potential **negative outcomes or value co-destructions** might arise from Dawetrest’s activities, and how can we address them? (Identify any unintended **harm or downsides**. Who might experience these negative impacts? **How could the project mitigate or prevent these issues**?)
+
+### Products & Services
+
+**Q:** What are the core **products or services** that Dawetrest will offer or implement to deliver value? (Describe the main **offerings or interventions** that form the crux of the project.)
+
+### Partnerships
+
+**Q:** Who are potential **key partners** or collaborators for Dawetrest, and why would they be interested in working together? (List organizations or communities – e.g. **local governments, universities, NGOs, businesses, EU initiatives** – that could partner with us.)
+
+### Governance
+
+**Q:** How should **governance and decision-making** be structured in the Dawetrest project? (Consider who gets a **voice in key decisions** and how decisions will be made. What governance practices can ensure **fairness, transparency, and accountability**?)
+
+### Resources
+
+**Q:** What **resources** are most critical for Dawetrest to succeed, and how will we secure them? (Think about **tangible resources** like funding and **intangible resources** like expertise or networks.)
+
+### Activities
+
+**Q:** What key **activities** must Dawetrest perform to create and deliver its intended value? (Describe the main **actions, processes, or operations** the project will undertake.)
+
+### Biophysical Stocks
+
+**Q:** Which **natural resources or biophysical stocks** does Dawetrest rely on or impact, and how will we manage them responsibly? (Identify and discuss sustainability practices.)
+
+### Ecosystem Services
+
+**Q:** What **ecosystem services** (beneficial natural processes) does the project benefit from or affect, and how can Dawetrest support these services? (e.g. clean water, climate regulation, biodiversity.)
+
+### Costs
+
+**Q:** What are the significant **costs** associated with Dawetrest, and how will we manage them sustainably? (Include **financial, social, and environmental costs**.)
+
+### Goals
+
+**Q:** What are the overarching **goals** and purpose of the Dawetrest project? (Articulate the **core mission** and long-term vision. What does **success** look like?)
+
+### Benefits
+
+**Q:** What **benefits** and positive outcomes will Dawetrest deliver, and for whom? (Include **social, environmental, and economic** benefits. How will we **measure success**?)
+
+
+For more detailed explanation of every building block, please refer to the [Flourishing Business Canvas](https://flourishingbusiness.org/flourishing-business-canvas/){target=_blank} website.
+

@@ -1,0 +1,59 @@
+---
+title: "Business model"
+subtitle: "Deliverable no. D6.3"
+date: "March 2025"
+format:
+  docx:
+    reference-doc: C:/Users/Mislav/Documents/GitHub/dawetrest/D6.4/D6-4.docx
+    table-style: "Table Style #1"
+---
+
+{{< pagebreak >}}
+
+## Document details
+
+| Field               | Value                                         |
+|---------------------|-----------------------------------------------|
+| Project Acronym     | DaWetRest                                     |
+| Project Name        | Danube Wetlands and flood plains Restoration… |
+| Call / Topic        | HORIZON-MISS-2022-OCEAN-01-02                 |
+| Grant Agreement No. | 101113015                                     |
+| Project Start Date  | June 2023                                     |
+| Project End Date    | May 2027                                      |
+| Work package        | WP6 / Scale-up…                               |
+| Deliverable         | Concept on business models for…               |
+| Due Date            | xx/xx/2027                                    |
+| Author(s)           | Mislav Šagovac (AIH)                          |
+
+{{< pagebreak >}}
+
+## Glossary and Abbreviations
+
+| Abbreviation | Meaning                                                                 |
+|--------------|--------------------------------------------------------------------------|
+| CINEA        | European Climate Infrastructure and Environment Executive Agency         |
+| EC           | European Commission                                                      |
+| BMC          | Business Model Canvas                                                    |
+| FBM          | Flourishing Business Models                                              |
+
+{{< pagebreak >}}
+
+# Methodology
+
+{{< include methodology.qmd >}}
+
+{{< pagebreak >}}
+
+{{< include MDDemo.qmd >}}
+
+{{< pagebreak >}}
+
+{{< include business_model_md_demo.qmd >}}
+
+{{< pagebreak >}}
+
+:::: references
+# References
+::::
+
+{{< pagebreak >}}

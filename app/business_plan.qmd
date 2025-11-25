@@ -1,0 +1,1080 @@
+---
+title: "DaWetrest Business Plan"
+author: "Mislav Sagovac"
+date: last-modified
+format: html
+  # html:
+    # embed-resources: true
+# format: docx
+execute:
+  echo: false
+  warning: false
+editor: visual
+bibliography: reference.bib
+server: shiny
+---
+
+
+{{< include methodology.qmd >}}
+
+```{r}
+# format:
+#   docx:
+#     toc: false
+#     number-sections: true
+#     highlight-style: github
+# format: 
+#   html:
+#     embed-resources: true
+
+library(data.table)
+library(httr)
+library(jsonlite)
+library(flextable)
+library(ggplot2)
+library(patchwork)
+library(stringr)
+library(lubridate)
+library(readxl)
+library(janitor)
+library(tabulapdf)
+library(eurostat)
+library(officer)
+library(DT)
+library(treemapify)
+library(shiny)
+library(readr)
+library(dplyr)
+
+# Constants
+URL      = "https://sudreg-data.gov.hr/api/javni/"
+OPCINE   = c("Draž", "Erdut", "Kneževi Vinogradi", "Bilje")
+OPCINEID = c(914, 1104, 213, 1953)
+OPCINA   = "Draž"
+OPCINAID = 914
+LSGID    = vapply(as.character(OPCINEID), function(x) {
+  if (nchar(x) == 3) {
+    return(str_pad(str_sub(x, 1, 2), width = 3, side = "left", pad = "0"))
+  } else {
+    return(str_sub(x, 1, 3))
+  }
+}, FUN.VALUE = character(1L))
+LSG     = LSGID[1]
+
+# DT template
+DT_template = function(df, n = 5) {
+  datatable(df,
+            rownames = FALSE,
+            escape = FALSE,
+            extensions = 'Buttons',
+            options = list(dom = 'Blfrtip', 
+                           pageLength = n,
+                           buttons = c('copy', 'csv', 'excel', 'pdf', 'print'),
+                           lengthMenu = list(c(10,25,50,-1), c(10,25,50,"All"))))
+}
+```
+
+
+# Data
+
+```{r}
+# Import data 
+# TODO: Idea is to prepare all data in other script and just import everyithing here.
+# TODO: Possibly, it can be downloaded every day/week/month and then just imported here.
+codes_locals = fread(file.path("data", "jls_codes.csv"))
+nacerev2_dt = fread(file.path("data", "nkd2007.csv"))
+dt = fread(file.path("data", "court_registry.csv"))
+fina_dt = fread(file.path("data", "fina.csv"))
+udruge = fread(file.path("data", "ngo.csv"))
+cpii = fread(file.path("data", "cpii.csv"))
+hzz  = fread(file.path("data", "hzz.csv"))
+population_dt = fread(file.path("data", "population.csv"))
+
+# Filter counties
+dunav_cpii = cpii[name %in% OPCINE]
+dunav_hzz = hzz[name %in% OPCINE]
+dunav_udruge = udruge[jprs_id %in% LSGID]
+```
+
+```{r}
+#| context: setup
+
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(shiny)
+
+```
+
+
+```{r}
+#| context: data
+
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(shiny)
+
+# Eurostat socioeconomic data
+data_bd <- readRDS("data_eurostat/eurostat_bd.rds")
+data_emp <- readRDS("data_eurostat/eurostat_employment.rds")
+data_fert <- readRDS("data_eurostat/eurostat_fertility.rds")
+data_gdp <- readRDS("data_eurostat/eurostat_gdp.rds")
+data_crime <- readRDS("data_eurostat/eurostat_crime.rds")
+data_pop_change <- readRDS("data_eurostat/eurostat_pop_change.rds")
+data_pop_age <- readRDS("data_eurostat/eurostat_pop_age.rds")
+data_pop_structure <- readRDS("data_eurostat/eurostat_pop_structure.rds")
+
+# Function to process Eurostat data
+process_eurostat_data <- function(data) {
+  data %>%
+    as.data.frame() %>%
+    mutate(NUTS3 = ifelse(geo %in% c("Bulgaria", "Croatia", "Romania"), "no", "yes")) %>%
+    filter(NUTS3 != "no", !is.na(values)) %>%
+    mutate(geo = fifelse(geo == "Osjecko-baranjska zupanija (NUTS 2016)",
+                         "Osječko-baranjska županija", geo)) %>%
+    mutate(Date = as.Date(paste0(time, "-01-01")))
+}
+
+# Process Eurostat data
+filtered_data_bd <- process_eurostat_data(data_bd)
+filtered_data_emp <- process_eurostat_data(data_emp)
+filtered_data_fert <- process_eurostat_data(data_fert)
+filtered_data_gdp <- process_eurostat_data(data_gdp)
+filtered_data_crime <- process_eurostat_data(data_crime)
+filtered_data_pop_change <- process_eurostat_data(data_pop_change)
+filtered_data_pop_age <- process_eurostat_data(data_pop_age)
+filtered_data_pop_structure <- process_eurostat_data(data_pop_structure)
+
+# # test
+# dt = as.data.table(filtered_data_bd)
+# dt[, unique(NUTS3)]
+# dt[, unique(geo)]
+```
+
+
+# Socio-ecnomnic analysis of 3 DEMO counties
+
+## Business and Employment Data
+
+```{r ui_gdp}
+
+#| panel: fill
+
+# Stvaranje izborne liste za "unit" - specifično za GDP
+choices_GDP <- unique(filtered_data_gdp$unit)
+
+# UI element za odabir unit-a - specifičan naziv za GDP
+selectInput('selected_unit_GDP', 'Select a unit for GDP:', choices = choices_GDP, selected = "Euro per inhabitant", width = '80%')
+
+# Izlazni grafikon za GDP
+plotOutput('gdp_plot')
+```
+
+Ovdje samo isprobavam tekst. Da sve radi.
+
+
+```{r ui_BD}
+#| panel: fill
+
+# Stvaranje izborne liste za indikatore - specifično za Business Demography (BD)
+choices_BD <- unique(filtered_data_bd$indic_sb)
+
+# UI element za odabir indikatora - specifičan naziv sa sufiksom BD
+selectInput('selected_indicator_BD', 
+            'Select an indicator for Business Demography:', 
+            choices = choices_BD, 
+            selected = "Net business population growth - percentage",  # Postavljanje prvog indikatora
+            width = '80%')
+
+# Izlazni grafikon za Business Demography (BD) - specifičan naziv
+plotOutput('business_demography_plot_BD')
+```
+
+```{r ui_emp}
+
+#| panel: fill
+
+# Stvaranje izborne liste za nace_r2 - specifično za Employment (EMP)
+choices_EMP <- unique(filtered_data_emp$nace_r2)
+
+# UI element za odabir NACE kategorije - specifičan naziv sa sufiksom EMP
+selectInput('selected_nace_EMP', 'Select a NACE category for Employment:', choices = choices_EMP, selected = choices_EMP[1], width = '80%')
+
+# Izlazni grafikon za Employment (EMP) - specifičan naziv
+plotOutput('employment_plot_EMP')
+```
+
+
+## Population
+
+```{r ui_pop_sex_age}
+#| panel: fill
+
+# Stvaranje izborne liste za 'sex' - specifično za Population by Age and Sex
+choices_sex <- unique(filtered_data_pop_age$sex)
+
+# Stvaranje izborne liste za 'age' - specifično za Population by Age and Sex
+choices_age <- unique(filtered_data_pop_age$age)
+
+# UI elementi za odabir spola i dobne skupine
+selectInput('selected_sex', 'Select sex for Population by Age:', choices = choices_sex, selected = choices_sex[1], width = '80%')
+selectInput('selected_age', 'Select age group for Population by Age:', choices = choices_age, selected = "Median age of population", width = '80%')
+
+# Izlazni grafikon za Population by Age and Sex
+plotOutput('pop_age_sex_plot')
+```
+
+```{r ui_pop_structure}
+#| panel: fill
+
+# Stvaranje izborne liste za 'indic_de' - specifično za Population Structure Indicators
+choices_pop_structure <- unique(filtered_data_pop_structure$indic_de)
+
+# UI element za odabir populacijskog indikatora
+selectInput('selected_indicator_pop_structure', 'Select population structure indicator:', choices = choices_pop_structure, selected = choices_pop_structure[1], width = '80%')
+
+# Izlazni grafikon za Population Structure Indicators
+plotOutput('pop_structure_plot')
+```
+
+```{r ui_pop_change}
+#| panel: fill
+
+# Stvaranje izborne liste za 'indic_de' - specifično za Population Change
+choices_pop_change <- unique(filtered_data_pop_change$indic_de)
+
+# UI element za odabir indikatora populacijske promjene
+selectInput('selected_indicator_pop_change', 'Select population change indicator:', choices = choices_pop_change, selected = choices_pop_change[1], width = '80%')
+
+# Izlazni grafikon za Population Change
+plotOutput('pop_change_plot')
+```
+
+```{r ui_fert}
+
+#| panel: fill
+
+# Stvaranje izborne liste za indic_de - specifično za Fertility (FERT)
+choices_FERT <- unique(filtered_data_fert$indic_de)
+
+# UI element za odabir indic_de - specifičan naziv sa sufiksom FERT
+selectInput('selected_indicator_FERT', 'Select fertility indicator:', choices = choices_FERT, selected = choices_FERT[1], width = '80%')
+
+# Izlazni grafikon za Fertility (FERT) - specifičan naziv
+plotOutput('fertility_plot_FERT')
+
+```
+
+
+```{r server}
+#| context: server
+
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(shiny) 
+
+#----------# Gross Domestic Product (GDP) #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za GDP
+filtered_data_GDP <- reactive({
+  filtered_data_gdp %>%
+    filter(unit == input$selected_unit_GDP)
+})
+
+# Renderiranje grafikona za GDP
+output$gdp_plot <- renderPlot({
+  # ggplot(filtered_data_GDP(), aes(x = Date, y = values)) +
+  #   geom_line() +
+  #   facet_wrap(~ geo, scales = "free_y") +
+  #   labs(title = paste("Gross Domestic Product (GDP) -", input$selected_unit_GDP),
+  #        x = "Year",
+  #        y = input$selected_unit_GDP) +
+  #   theme_minimal() +
+  #   scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+  ggplot2::ggplot(filtered_data_GDP(), aes(x = Date, y = values, color = geo)) +
+    geom_line() +
+    labs(title = paste("Gross Domestic Product (GDP) -", input$selected_unit_GDP),
+         x = "Year",
+         y = "Value") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+})
+
+#----------# Business Demography (BD) #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za BD
+filtered_data_BD <- reactive({
+  filtered_data_bd %>%
+    filter(indic_sb == input$selected_indicator_BD)
+})
+
+# Renderiranje grafikona za Business Demography (BD)
+output$business_demography_plot_BD <- renderPlot({
+  # ggplot2::ggplot(filtered_data_BD(), aes(x = Date, y = values)) +
+  #   geom_line() +
+  #   facet_wrap(~ geo, scales = "free_y") +
+  #   labs(title = paste("Business Demography -", input$selected_indicator_BD),
+  #        x = "Year",
+  #        y = "Value") +
+  #   theme_minimal() +
+  #   scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+  ggplot2::ggplot(filtered_data_BD(), aes(x = Date, y = values, color = geo)) +
+    geom_line() +
+    labs(title = paste("Business Demography -", input$selected_indicator_BD),
+         x = "Year",
+         y = "Value") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+})
+
+#----------# Employment (EMP) #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za EMP
+filtered_data_EMP <- reactive({
+  filtered_data_emp %>%
+    filter(nace_r2 == input$selected_nace_EMP)
+})
+
+# Renderiranje grafikona za Employment (EMP)
+output$employment_plot_EMP <- renderPlot({
+  # ggplot2::ggplot(filtered_data_EMP(), aes(x = Date, y = values)) +
+  #   geom_line() +
+  #   facet_wrap(~ geo, scales = "free_y") +
+  #   labs(title = paste("Employment Data -", input$selected_nace_EMP),
+  #        x = "Year",
+  #        y = "Value (Thousand)") +
+  #   theme_minimal() +
+  #   scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+  ggplot2::ggplot(filtered_data_EMP(), aes(x = Date, y = values, color = geo)) +
+    geom_line() +
+    labs(title = paste("Employment Data -", input$selected_nace_EMP),
+         x = "Year",
+         y = "Value") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+})
+
+## Server: Population Data and Fertility
+
+#----------# Population by Age and Sex #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za Population by Age and Sex
+filtered_pop_age <- reactive({
+  filtered_data_pop_age %>%
+    filter(sex == input$selected_sex, age == input$selected_age)
+})
+
+# Renderiranje grafikona za Population by Age and Sex
+output$pop_age_sex_plot <- renderPlot({
+  # ggplot2::ggplot(filtered_pop_age(), aes(x = Date, y = values)) +
+  #   geom_line() +
+  #   facet_wrap(~ geo, scales = "free_y") +
+  #   labs(title = paste("Population by Age and Sex -", input$selected_sex, "/", input$selected_age),
+  #        x = "Year",
+  #        y = "Population") +
+  #   theme_minimal() +
+  #   scale_x_date(date_labels = "%Y", date_breaks = "5 years")
+  ggplot2::ggplot(filtered_pop_age(), aes(x = Date, y = values, color = geo)) +
+    geom_line() +
+    labs(title = paste("Population by Age and Sex -", input$selected_sex, "/", input$selected_age),
+         x = "Year",
+         y = "Population") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+})
+
+#----------# Population Structure Indicators #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za Population Structure Indicators
+filtered_pop_structure <- reactive({
+  filtered_data_pop_structure %>%
+    filter(indic_de == input$selected_indicator_pop_structure)
+})
+
+# Renderiranje grafikona za Population Structure Indicators
+output$pop_structure_plot <- renderPlot({
+  # ggplot2::ggplot(filtered_pop_structure(), aes(x = Date, y = values)) +
+  #   geom_line() +
+  #   facet_wrap(~ geo, scales = "free_y") +
+  #   labs(title = paste("Population Structure -", input$selected_indicator_pop_structure),
+  #        x = "Year",
+  #        y = "Value (Years)") +
+  #   theme_minimal() +
+  #   scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+  ggplot2::ggplot(filtered_pop_structure(), aes(x = Date, y = values, color = geo)) +
+    geom_line() +
+    labs(title = paste("Population Structure -", input$selected_indicator_pop_structure),
+         x = "Year",
+         y = "Value (Years)") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+})
+
+#----------# Population Change #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za Population Change
+filtered_pop_change <- reactive({
+  filtered_data_pop_change %>%
+    filter(indic_de == input$selected_indicator_pop_change)
+})
+
+# Renderiranje grafikona za Population Change
+output$pop_change_plot <- renderPlot({
+  # ggplot2::ggplot(filtered_pop_change(), aes(x = Date, y = values)) +
+  #   geom_line() +
+  #   facet_wrap(~ geo, scales = "free_y") +
+  #   labs(title = paste("Population Change -", input$selected_indicator_pop_change),
+  #        x = "Year",
+  #        y = "Value") +
+  #   theme_minimal() +
+  #   scale_x_date(date_labels = "%Y", date_breaks = "3 years")
+  ggplot2::ggplot(filtered_pop_change(), aes(x = Date, y = values, color = geo)) +
+    geom_line() +
+    labs(title = paste("Population Change -", input$selected_indicator_pop_change),
+         x = "Year",
+         y = "Value") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+})
+
+#----------# Fertility Indicators #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za Fertility Indicators
+filtered_fert <- reactive({
+  filtered_data_fert %>%
+    filter(indic_de == input$selected_indicator_FERT)
+})
+
+# Renderiranje grafikona za Fertility Indicators
+output$fertility_plot_FERT <- renderPlot({
+  # ggplot2::ggplot(filtered_fert(), aes(x = Date, y = values, color = geo)) +
+  #   geom_line() +
+  #   # facet_wrap(~ geo, scales = "free_y") +
+  #   labs(title = paste("Fertility Indicators -", input$selected_indicator_FERT),
+  #        x = "Year",
+  #        y = "Value") +
+  #   theme_minimal() +
+  #   scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+  ggplot2::ggplot(filtered_fert(), aes(x = Date, y = values, color = geo)) +
+    geom_line() +
+    labs(title = paste("Fertility Indicators -", input$selected_indicator_FERT),
+         x = "Year",
+         y = "Value") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+})
+
+```
+
+
+
+
+# Demography for Croatian Donau region in Osječko-Baranjska County
+
+```{r}
+#| label: tab-demography
+#| tab-cap: "Demography across municipalities"
+
+# Macro variables
+macro_variables = melt(population_dt[, .SD, .SDcols = -"county"], id.vars = "naziv_opcine")
+macro_variables = macro_variables[, variable := fcase(
+  variable == "population_total", "Population",
+  variable == "average_age", "Average age",
+  variable == "ageing_index", "Ageing index",
+  variable == "age_coefficient", "Age coefficient"
+)]
+macro_variables = dcast(macro_variables, variable ~ naziv_opcine, value.var = "value")
+ft = qflextable(macro_variables) |>
+  colformat_double()
+ft = set_table_properties(
+  ft,
+  width = 1,
+  layout = "autofit"
+)
+ft
+```
+
+The table @tab-demography shows key demographic data across municipalities. It includes population size, average age, ageing index, and age coefficient. This data provides general demographic figures that are essential for understanding the labor market dynamics and economic capacity in general
+
+Erdut is the most populous municipality with around 5500 residents, while Draž has the smallest population at cca 2.000. Bilje and Kneževi Vinogradi sit in the middle with populations of 4,772 and 3,357, respectively. OVerall, we can say those municipalities are very small which can be very challenging for every new business. 
+
+In terms of the average age, Draž has the oldest population, with an average age of 50 years, followed by Erdut at 48, Kneževi Vinogradi at 47, and Bilje with the youngest average age of 44 years. This older demographic in Draž could explain part of its unemployment struggles (see Unepoloyment section), as older populations typically face more difficulties re-entering the workforce or adapting to changing labor market demands.
+
+The ageing index also shows the demographic challenges, particularly in Draž. This index measures the proportion of elderly individuals compared to younger people in the population. Draž’s ageing index is the highest at 305. This means there are significantly more elderly residents than younger individuals in Draž, which can also lead to higher unemployment rates and lower productivity. The age coefficient, which is another measure of population ageing, paints a similar picture. Draž leads with the highest age coefficient of 41.7, indicating that a significant portion of its population is elderly. Erdut (37.3) and Kneževi Vinogradi (35.9) also have relatively high age coefficients, while Bilje remains on the lower end at 29.3.
+
+In conclusion, the demographic data from the table highlights the deeper challenges facing Draž, particularly in terms of its ageing population, which likely contributes to its persistently high unemployment rates. Writing businness models and buinsess plans should take into consideration these demographic factors.
+
+
+# Business activity for Croatian Donau region in Osječko-Baranjska County
+
+```{r}
+# COURT REGISTRY ANALYSIS -------------------------------------------------
+# filter municipalities
+dunav = dt[sifra_opcine %in% OPCINEID]
+dunav = merge(
+  dunav, fina_dt[, .SD, .SDcols = -c("mbs", "mb")], 
+  by = "oib", all.x = TRUE, all.y = FALSE)
+dunav = merge(
+  dunav, population_dt[, .(naziv_opcine, population_total)], 
+  by = "naziv_opcine", all.x = TRUE, all.y = FALSE)
+nacerev2_dt[, nkd2007 := as.integer(nkd2007)] # TODO: add this to get_data
+nacerev2_dt = na.omit(nacerev2_dt)
+dunav = merge(dunav, nacerev2_dt, by = "nkd2007", all.x = TRUE, all.y = FALSE)
+
+# Not sure how this is possible but remove observations where datum_osnivanja > datum_brisanja
+dunav[datum_osnivanja > datum_brisanja]
+```
+
+```{r}
+# Convert dunav to panel format
+panel = dunav[, .(datum_osnivanja = as.Date(datum_osnivanja), 
+                  datum_brisanja = as.Date(datum_brisanja), 
+                  mbs)]
+panel = na.omit(panel, cols = c("datum_osnivanja"))
+panel[is.na(datum_brisanja), datum_brisanja := Sys.Date() - 1]
+panel = unique(panel)
+panel = panel[, .(month = seq.Date(datum_osnivanja, datum_brisanja, by = 1)), 
+              by = mbs]
+panel[, month := ceiling_date(month, "month")-1]
+panel = unique(panel)
+panel = dunav[panel, on = "mbs"]
+```
+
+```{r}
+# # Save data for portal
+# fwrite(dunav, "data/dunav_municipalities_econonomics_data.csv")
+# fwrite(panel, "data/dunav_municipalities_econonomics_data_panel.csv")
+# fwrite(dunav_udruge, "data/dunav_municipalities_ngo_data_panel.csv")
+```
+
+```{r}
+#| label: fig-number-firms
+#| fig-cap: Number of business subjects in the court registry
+
+dt_number_firms = panel[month > as.Date("2000-01-01"),
+                        .(N = .N, population_total = data.table::first(population_total)),
+                        by = .(naziv_opcine, month)][order(naziv_opcine, month)]
+start_year_month = dt_number_firms[, strftime(min(month), format = "%Y-%m")]
+end_year_month   = dt_number_firms[, strftime(max(month), format = "%Y-%m")]
+number_firms_start_draz = dt_number_firms[naziv_opcine == "Draž" & month == min(month), N]
+number_firms_end_draz   = dt_number_firms[naziv_opcine == "Draž" & month == max(month), N]
+dt_number_firms[, `Npp` := N / population_total]
+p1 = ggplot(dt_number_firms, aes(x = month, y = N, color = naziv_opcine)) +
+  geom_line() +
+  theme_minimal() +
+  labs(
+    title = "Number of business subjects across counties",
+    y = "Number of business subjects",
+    color = "Counties"
+  ) +
+  theme(axis.title.x = element_blank()) +
+  geom_line(data = dt_number_firms[naziv_opcine == "Draž"], size = 2)
+p2 = ggplot(dt_number_firms, aes(x = month, y = Npp, color = naziv_opcine)) +
+  geom_line() +
+  theme_minimal() +
+  labs(
+    title = "Number of business subjects per capita across counties",
+    y = "Number of business subjects pp",
+    color = "Counties"
+  ) +
+  theme(axis.title.x = element_blank()) +
+  geom_line(data = dt_number_firms[naziv_opcine == "Draž"], size = 2)
+p1 / p2
+```
+
+We start out  with the number of business subjects for Donau region using the data from the court registry. In figure @fig-number-firms you can see the number of business subjects across counties through time (from `r start_year_month` to `r end_year_month`). We show the results for `r nrow(dunav)` counties, with special emphasis on Draz municipality. We can see that all counties experienced a significant increase in the number of business subjects in the observed period. Municipality `r OPCINA` have only `r number_firms_start_draz` firms at the beginning of the observed period, but the number of firms increased over time to `r number_firms_end_draz` at the end of the observed period. Compares to other counties, `r OPCINA` have smallest business activity, while Bilje experienced the highest grow of the number of business subjects. We have to note that number of active business subjects can be biased above, because it is not not uncommon for business subjects to inactive in reality, but not formally in court registry database. For exmaple, it is possible for firm to have 0 employees or no revenues, but still be active in the court registry.
+
+Below graph of figure @fig-number-firms shows the number of business subjects per capita across counties. We can see that the number of business subjects per capita is highest in Bilje, while Erdut has the lowest number of business subjects per capita. `r OPCINA` is now on second place, with the number of business subjects per capita higher than in Kneževi Vinogradi and Erdut. 
+
+
+```{r}
+#| label: tbl-industry-structure
+#| tab-cap: "Industry structure across counties"
+
+# Make ggplot that shows industry by onth for every naziv_opcine with bar plot
+industry_revenue = dunav[revenue_2022 > 0 & !is.na(nkd2007), 
+                         .(revenue = sum(revenue_2022)),
+                         by = .(naziv_opcine, nkd2007_name)]
+setorder(industry_revenue, naziv_opcine, -revenue)
+industry_revenue[, let(id_ = rowid(naziv_opcine))]
+industry_revenue[id_ > 10, nkd2007_name := "Other"]
+industry_revenue = industry_revenue[, .(revenue = sum(revenue)), 
+                                    by = .(naziv_opcine, nkd2007_name)]
+industry_revenue = industry_revenue[, let(
+ industry_pct_revenue = round(revenue / sum(revenue) * 100, 1)
+), by = naziv_opcine]
+industry_revenue[, revenue := NULL]
+setnames(industry_revenue, c("Municipality", "Industry", "Revenue"))
+
+# Flextable
+ft = qflextable(industry_revenue) |>
+  colformat_double()
+ft = set_table_properties(
+  ft,
+  width = 1,
+  layout = "autofit"
+)
+border(ft,
+       i = seq(11, 44, by = 11),
+       border.bottom = fp_border(color = "black"),
+       part = "body")
+# ft
+
+# DT table
+# DT_template(industry_revenue, 11)
+```
+
+Next, we will show the industry structure across counties. In table @tbl-industry-structure you can see the results. We show the results for `r nrow(dunav)` counties. We can see that the industry structure is different across counties. 
+
+ilje, for instance, showcases a significant emphasis on traditional manufacturing, particularly in the production of wood products, cork, straw, and plaiting materials, which alone accounts for 19% of its revenue. This is complemented by a variety of sectors including material recovery, construction, and the rental and leasing of water transport equipment, illustrating a broad economic base. The presence of non-specialised wholesale trade, road freight transport, and vehicle maintenance services further diversifies Bilje's economic activities, with the hospitality and retail sectors also making notable contributions.
+
+Draž presents a contrasting picture with its economy heavily tilted towards agriculture, where the cultivation of cereals, leguminous crops, and oil seeds dominates, representing 33.2% of its revenue. Infrastructure development and logistics are also pivotal, with freight transport by road and construction activities standing out. Interestingly, Draž has carved out a niche in the digital economy through web portals, accounting for a significant portion of its revenue. The municipality also benefits from a diversified service sector, including warehousing, online and mail order retail, showcasing a dynamic economic landscape. Since Draž is most important municipality for our analzsis, we show it indsutry structure in the figure @fig-industry-structure.
+
+Erdut's economy leans heavily on logistics and agriculture, with freight transport by road and swine raising leading its industrial sectors. The importance of waste management, construction, and the food service industry, alongside electricity production, indicates a well-rounded economic environment. Retail activities and the manufacture of oils and fats further contribute to Erdut's economic diversity.
+
+Kneževi Vinogradi stands out for its strong logistics and transportation sector, with freight transport by road generating a substantial share of its revenue. The manufacturing of plastic products and a vibrant online retail scene underscore the municipality's industrial versatility. The automotive sector, both in sales and repair, alongside wholesale trade and landscape services, highlights the area's comprehensive economic activities.
+
+The diverse economic activities across the municipalities of Bilje, Draž, Erdut, and Kneževi Vinogradi, ranging from agriculture and manufacturing to services and logistics, present unique opportunities for integrating biodiversity and wetlands restoration into the regional economic fabric. The prominence of agriculture in Draž, for instance, underscores the potential for sustainable farming practices that support biodiversity, reduce water pollution, and contribute to wetland health. The significant revenue from cereal, leguminous crops, and oil seeds cultivation can be leveraged to promote agroecological practices that enhance biodiversity and ecosystem services.
+
+In Bilje, the leading industry of wood product manufacturing, alongside the recovery of sorted materials, highlights opportunities for sustainable resource use and waste management practices that minimize environmental impact. These industries can play a crucial role in supporting wetlands restoration projects by ensuring sustainable material sourcing and implementing waste reduction strategies that benefit local ecosystems.
+
+The service sector, including hospitality, restaurants, and retail, provides a direct link to consumers and tourists. Businesses in these sectors can advocate for and participate in local restoration projects, promote eco-tourism, and engage in practices that reduce their environmental footprint, thereby contributing to the overall health of the local ecosystem.
+
+Integrating biodiversity and wetlands restoration into the business model not only aligns with global sustainability goals but also offers economic benefits. By leveraging the unique industrial strengths of each municipality, businesses can contribute to a resilient and sustainable regional economy that values and actively supports the restoration and conservation of biodiversity and wetlands.
+
+```{r}
+#| label: fig-industry-structure
+#| fig-cap: "Industry structure in Draž"
+#| fig-width: 8
+#| fig-height: 8
+
+# Make tree plot for Draz naziv_opcine
+
+ggplot(industry_revenue[Municipality == "Draž"], 
+       aes(area = Revenue, fill = Industry)) +
+  geom_treemap() +
+  geom_treemap_text(
+    aes(label = paste0(Revenue, "%")),
+    grow = TRUE,
+    reflow = TRUE,
+    colour = "white"
+  ) +
+  theme_minimal() +
+  labs(
+    title = "Industry structure in Draž",
+    fill = "Industry",
+    x = NULL,
+    y = NULL
+  ) +
+  # legend to the bottom and have 2 columns
+  theme(legend.position = "bottom",
+        legend.title = element_blank()) +
+  guides(fill=guide_legend(ncol=2))
+
+  # theme(legend.position = "bottom")
+
+  
+```
+
+In the quest to dissect the structural nuances of local businesses, the granular analysis of concentration and hierarchy among business entities reveals a critical perspective on economic centralization. By delving into the public financial statements of all business subjects, an enumeration of the most significant entities surfaces, evaluated across four cardinal measures: employment, revenue, assets, and profit. For illustrative clarity, the primary focus here is the employment variable, with additional details on the other metrics being methodically cataloged in the appendices.
+
+```{r}
+#| label: tab-biggestfirms
+#| tab-cap: "Biggest firms in the region"
+
+# Biggest firms
+biggest = dunav[!is.na(name)]
+
+# Help function to extract largest frims by target var
+largest_by_var = function(dt, var = "revenue_2022", n = 10) {
+  # dt = copy(biggest)
+  dt_ = dt[!is.na(x), env = list(x = var)]
+  dt_ = dt_[, .(naziv_opcine, name, x), env = list(x = var)]
+  setorderv(dt_, c("naziv_opcine", var), c(1,-1))
+  dt_[, paste0(var, "_pct") := round(x / sum(x) * 100, 2),
+      by = naziv_opcine,
+      env = list(x = var)]
+  dt_ = dt_[, data.table::first(.SD, n), by = naziv_opcine, env = list(n = n)]
+  cols = c("naziv_opcine", "name", paste0(var, "_pct"))
+  dt_ = dt_[, ..cols]
+  
+  setnames(dt_,
+           c("Municipality",
+             "Firm",
+             paste0(str_to_title(
+               gsub("_.*", "", var)
+             ), " %")))
+  ft = qflextable(dt_) |>
+    colformat_double()
+  ft = set_table_properties(ft,
+                            width = 1,
+                            layout = "autofit")
+  border(
+    ft,
+    i = seq(10, 40, by = 10),
+    border.bottom = fp_border(color = "black"),
+    part = "body"
+  )
+  # DT table
+  # DT_template(dt_, 10)
+}
+largest_by_var(biggest, "emp_hour")
+```
+
+The table referenced as @tab-biggestfirms elucidates the concentration by employment within the municipality of Draž. The data unravels the substantial employment impact wrought by "ANABBELA D.O.O.", which singularly employs nearly a quarter (25.9%) of the workforce, thereby stamping an indelible imprint on the local employment sector. This entity's gravitational pull on the employment market is not only emblematic of its supremacy but also indicative of the municipality's economic intertwinement with this corporate entity. The aggregation of employment within the top 10 companies, accounting for two-thirds of all local employees, paints a vivid picture of economic centralization.
+
+When shifting the lens to alternative evaluative measures, this theme of concentration amplifies. In terms of revenue, "ANABBELA D.O.O." demonstrates a commanding presence, amassing 43%, while the leading decagon of companies collectively garners an astounding 93% of total revenue. A similar trend of concentrated economic power is mirrored in profit and asset statistics, with "ANABBELA D.O.O." securing 59% and 43% respectively. Such pronounced concentration across all metrics bespeaks a high dependency of Draž's economic health on the fortunes of a select cadre of business powerhouses.
+
+Other municipalities shows high contetration too. In, Kneževi vinogradi and Erdut, 3 business subjects accounts for more than 60% of economic activity. Bilje shows lowest concetration among all municipalities.
+
+# Labour market
+
+## Employment
+
+```{r}
+#| label: fig-labour-total
+#| fig-cap: "Employment across municipalities"
+
+# Prepare data for plot
+dunav_cpii_total = dunav_cpii[, .(Employed = sum(total_total)), 
+                              by = .(name, month)]
+dunav_cpii_total = population_dt[dunav_cpii_total, on = c("naziv_opcine" = "name")]
+dunav_cpii_total[, employed_pp := Employed / population_total]
+
+# Plot
+p1 = ggplot(dunav_cpii_total, aes(x = month, y = Employed, color = naziv_opcine)) +
+  geom_line() +
+  theme_minimal() +
+  labs(
+    title = "Employment across municipalities",
+    y = "Number of employees",
+    color = "Municipalities"
+  ) +
+  theme(axis.title.x = element_blank()) +
+  geom_line(data = dunav_cpii_total[naziv_opcine == "Draž"], size = 2)
+p2 = ggplot(dunav_cpii_total, aes(x = month, y = employed_pp, color = naziv_opcine)) +
+  geom_line() +
+  theme_minimal() +
+  labs(
+    title = "Employment per capita across municipalities",
+    y = "Number of employees pp",
+    color = "Municipalities"
+  ) +
+  theme(axis.title.x = element_blank()) +
+  geom_line(data = dunav_cpii_total[naziv_opcine == "Draž"], size = 2)
+p1 / p2
+```
+
+The top graph in figure @fig-labour-total illustrates the absolute number of employees in each municipality over period 2020-2024. Bilje, Erdut, and Kneževi Vinogradi shows similar number of employes across time. Erdut shows the biggest increase, while number of employes in Kneževi Vinogradi and Bilje remains relatively stable. Draž, depicted by the green line, maintains a consistently lower number of employees, fluctuating around 400-450. The graphs confirms low capacity of Draž to employ people. So low number of potential work force can be constraint for economic activity.
+
+The bottom graph provides a perspective on employment per capita across the same municipalities. Kneževi Vinogradi, have the highest number of employees per capita, followed by Bilje and Erdut. All 3 municipalities shows small but positvi trend of the indicator. Draž, on the other hand, has the lowest employment per capita, indicating a lower employment rate relative to its population size. The employment per capita in Draž is around 0.13. This suggests that Draž has a lower capacity to employ its population compared to other municipalities, which could be a limiting factor for economic growth and development.
+
+Overall, the graphs reveal that while Bilje and Kneževi Vinogradi maintain stable employment numbers with slight fluctuations, Draž consistently shows the lowest employment levels but is improving in employment per capita in last few months. These trends provide valuable insight into how employment levels and employment per capita have evolved over time in these municipalities, highlighting relative economic changes and population effects on employment statistics.
+
+
+```{r}
+#| label: fig-labour-total-sex
+#| fig-cap: "Employment sex structure across municipalities"
+
+# Prepare data for plot
+dunav_cpii_total_sex = dunav_cpii[, .(men = sum(total_men), women = sum(total_women)), 
+                                  by = .(name, month)]
+dunav_cpii_total_sex[, total := men + women]
+dunav_cpii_total_sex[, let(ratio_women = women / total * 100)]
+
+ggplot(dunav_cpii_total_sex, aes(x = month, y = ratio_women, color = name)) +
+  geom_line() +
+  theme_minimal() +
+  theme(axis.title.x = element_blank()) +
+  geom_line(data = dunav_cpii_total_sex[name == "Draž"], size = 2)+
+  labs(
+    title = "Employment structure across municipalities",
+    y = "Percentage of women employees",
+    color = "Municipalities"
+    )
+```
+
+
+Figure @fig-labour-total-sex shows employment structure by sex. Equitable employment ensures the utilization of the entire population's talents, boosting productivity and household incomes while reducing poverty. Specifically, this graph focuses on the percentage of women employees within municipalities.
+
+In Bilje the percentage of women employees fluctuates around 50%. Erdut, represented by the blue line, consistently shows the lowest percentage of women employees, fluctuating between 40-45%. Kneževi Vinogradi, shown in purple, maintains a relatively stable trend with minor fluctuations, generally staying around 50-52%. Draž, depicted by the green line, exhibits more significant fluctuations compared to other municipalities, with the percentage of women employees ranging between 50-60%. Notably, Draž shows periods of both increase and decrease, peaking around mid-2022 and again in early 2023 before experiencing a decline. 
+
+Overall, the graph reveals that Draž experiences the most variability in the percentage of women employees, while Erdut consistently has the lowest percentage of women employees. Bilje and Kneževi Vinogradi show relative stability, with only minor fluctuations. These trends provide valuable insights into the gender composition of the workforce in these municipalities, indicating how the proportion of women employees has changed or remained stable over the years.
+
+# TODO: maybe better to show percentage as of 100%
+
+```{r}
+#| label: fig-labour-structure
+#| fig-cap: "Employment structure across municipalities"
+
+# Prepare data for plot
+cls = colnames(dunav_cpii)[grep("_total", colnames(dunav_cpii))]
+cls = c("name", "month", cls[-length(cls)])
+labour_structure = dunav_cpii[, ..cls]
+labour_structure[, month := as.Date(month)]
+labour_structure = melt(labour_structure, id.vars = c("name", "month"))
+setorder(labour_structure, name, month)
+
+# Plot labour structure for every municipality with geom_line
+ggplot(labour_structure, aes(x = month, y = value, color = variable)) +
+  geom_line() +
+  facet_wrap(~name, scales = "free_y") +
+  theme_minimal() +
+  labs(
+    title = "Employment structure across municipalities",
+    y = "Number of employees",
+    x = NULL,
+    color = "Labour type"
+  )
+```
+
+```{r}
+#| label: tab-labour-structure
+#| tab-cap: "Labour structure across municipalities"
+
+# Keep last month in year for labour_structure
+labour_structure_pct = labour_structure[, .SD[month == max(month)], 
+                                        by = .(name, year = data.table::year(month))]
+labour_structure_pct[, pct := value / sum(value) * 100, by = .(name, year)]
+labour_structure_pct = dcast(labour_structure_pct, year + variable ~ name, value.var = "pct")
+
+# Make flextable
+ft = qflextable(labour_structure_pct) |>
+  colformat_double(
+    j = 3:ncol(labour_structure_pct),
+    digits = 2,
+    suffix = "%"
+  ) |>
+  colformat_int(
+    j = 1,
+    big.mark = ""
+  )
+ft = set_table_properties(
+  ft,
+  width = 1,
+  layout = "autofit"
+)
+ft
+```
+
+The figure @fig-labour-structure illustrates the employment structure across municipalities. The data across municipality shows similar distribution. Most people work at legal entities. In Croatia, legal entities includes limited liability companies, and joint-stock companies.In table @tab-labour-structure you can see the employment structure across municipalities in percentage terms. We can confirm legal entities employ around 75% of the workforce in all municipalities. In Draž, this number exceeds 78% in the last year. Second most important employers are workers employed at physical persons. In Draž, this number is around around 8%. Two other important categories are crafters and farmers. In Draž, farmers employ around 7% of the workforce, while farmers employ around 6% of the workforce. Graph also shows that structure haven't changed much in last 4 years. Category "Workers with legal entities" is most important employer in all municipalities, with positive trend in all municipalities except Draž, where this category i relatively stable.
+
+```{r}
+#| label: fig-labour-structure-sex
+#| fig-cap: "Employment structure across municipalities"
+
+# Prepare data for plot
+cls = colnames(dunav_cpii)[grep("_men|_women", colnames(dunav_cpii))]
+cls = c("name", "month", cls[-length(cls)])
+labour_structure = dunav_cpii[, ..cls]
+labour_structure[, month := as.Date(month)]
+labour_structure = melt(labour_structure, id.vars = c("name", "month"))
+setorder(labour_structure, name, month)
+
+# Keep only relevant categories to make gaph more readable
+categories = labour_structure[, unique(variable)]
+categories = categories[grepl("legal|craft|farmer|persons", categories)]
+labour_structure = labour_structure[variable %in% categories]
+
+# Plot labour structure for every municipality with geom_line
+ggplot(labour_structure, aes(x = month, y = value, color = variable)) +
+  geom_line() +
+  facet_wrap(~name, scales = "free_y") +
+  theme_minimal() +
+  labs(
+    title = "Employment structure across municipalities",
+    y = "Number of employees",
+    x = NULL,
+    color = "Labour type"
+  )
+
+```
+
+```{r}
+#| label: tab-labour-structure-sex
+#| tab-cap: "Labour structure across municipalities"
+
+# Keep last month in year for labour_structure
+labour_structure_pct = labour_structure[, .SD[month == max(month)], 
+                                        by = .(name, year = data.table::year(month))]
+labour_structure_pct[, pct := value / sum(value) * 100, by = .(name, year)]
+labour_structure_pct = dcast(labour_structure_pct, year + variable ~ name, value.var = "pct")
+
+# Make flextable
+ft = qflextable(labour_structure_pct) |>
+  colformat_double(
+    j = 3:ncol(labour_structure_pct),
+    digits = 2,
+    suffix = "%"
+  ) |>
+  colformat_int(
+    j = 1,
+    big.mark = ""
+  )
+ft = set_table_properties(
+  ft,
+  width = 1,
+  layout = "autofit"
+)
+ft
+```
+
+The figure @fig-labour-structure-sex shows the employment structure across municipalities, labour types and and sex. The data shows different results across municipalities. In Draž, for example, there are more men than woman employed at legal entities. In bilje, numbers are equal while in Kneževi Vinogradi there are more woman than man employed at legal entites. The table @tab-labour-structure-sex shows same story but in percentage terms. 
+
+
+## Unemployment
+
+```{r}
+#| label: fig-unemployment-total
+#| fig-cap: "Unemployment across municipalities"
+
+# Prepare data for plot
+dunav_hzz_total = dunav_hzz[, .(Unemployed = sum(total)), by = .(name, year)]
+dunav_hzz_total = population_dt[dunav_hzz_total, on = c("naziv_opcine" = "name")]
+dunav_hzz_total[, unemployed_pp := Unemployed / population_total]
+setorder(dunav_hzz_total, naziv_opcine, year)
+
+# Plot
+p1 = ggplot(dunav_hzz_total, aes(x = year, y = Unemployed, color = naziv_opcine)) +
+  geom_line() +
+  theme_minimal() +
+  labs(
+    title = "Unemployment across municipalities",
+    y = "Number of unemployed",
+    color = "Municipalities"
+  ) +
+  theme(axis.title.x = element_blank()) +
+  geom_line(data = dunav_hzz_total[naziv_opcine == "Draž"], size = 2)
+p2 = ggplot(dunav_hzz_total, aes(x = year, y = unemployed_pp, color = naziv_opcine)) +
+  geom_line() +
+  theme_minimal() +
+  labs(
+    title = "Unemployment per capita across municipalities",
+    y = "Number of unemployed pp",
+    color = "Municipalities"
+  ) +
+  theme(axis.title.x = element_blank()) +
+  geom_line(data = dunav_hzz_total[naziv_opcine == "Draž"], size = 2)
+p1 / p2
+
+```
+
+The figure @fig-unemployment-total shows unemployment dynamics across our four municipalities between 2016 and 2023. The top graph shows the absolute number of unemployed individuals in each municipality, while the bottom graph shows unemployment rates per capita (divided by number of employees in 2021). 
+
+During the given period, the absolute number of unemployed individuals has generally declined across all municipalities. However it should be noted that part of this decline can be due to people leaving the region. We saw in the begining of data analysis tha popularion decreases during the same period. On the other side, the unemployment rate has also decreased, indicating a positive trend in employment opportunities. We can conclude there is a downward trend in unemployment across all municipalities, with Draž showing the highest unemployment rate. 
+
+In conclusion, unemployment has been consistently decreasing across these municipalities over the past six years, but Draž remains the most affected both in absolute and per capita terms. The other municipalities, while experiencing fewer unemployed individuals overall, have been more successful in achieving a stable and continuous reduction in unemployment. This information highlights the need for targeted interventions in Draž.
+
+```{r}
+#| label: fig-unemployment-sex
+#| fig-cap: "Unemployment by sex across municipalities"
+
+# Prepare data for plot
+cls = c("name", "year", "total", "men", "women")
+unemp_sex = dunav_hzz[, ..cls]
+unemp_sex = melt(unemp_sex, id.vars = c("name", "year"))
+setorder(unemp_sex, name, year)
+
+# Plot labour structure for every municipality with geom_line
+ggplot(unemp_sex, aes(x = year, y = value, color = variable)) +
+  geom_line() +
+  facet_wrap(~name, scales = "free_y") +
+  theme_minimal() +
+  labs(
+    title = "Unemployment by sex across municipalities",
+    y = "Number of unemployed",
+    x = NULL,
+    color = "Labour type"
+  )
+
+```
+
+In figure @fig-unemployment-sex we can see persistent gender disparity exists, with women consistently facing higher unemployment rates than men in each municipality. This pattern suggests that while overall economic conditions may be improving, targeted interventions may be required to address the gender-specific barriers to employment, particularly for women. The gap is stable across time.
+
+If we look at whome county (Osjecko-Baranjska county), the largest part of unqualified persons, persons without school, persons with unfinished and finished primary school, were in municipalities Darda (59.9%), Podgorač (58.7%), Jagodnjak (58.4%), **Draž** (54.2%) and Popovac (52.5%), while cities Beli Manastir (40.6%) and Belišće (38.6%) had the largest number of unemployed persons. Skilled persons dominate in Feričanci (77.8%), Čepin (77.2%), Antunovac (75.0%), Petrijevci (74.0%) and Ernestinovo (73.3%), while in cities Đakovo (83.8%) and Osijek (82.0%). 
+
+
+# Swat analysis
+
+```{r}
+#| label: tab-swat
+#| tab-cap: "SWOT analysis of the Donau region"
+#| tab-pos: 1
+
+
+# SWOT analysis
+swot = data.table(
+  Strengths = c(
+    "Diverse economic activities across municipalities",
+    "Presence of logistics and transportation sectors",
+    "Vibrant online retail and service sectors",
+    "Potential for sustainable farming practices",
+    "Opportunities for eco-tourism and local restoration projects"
+  ),
+  Weaknesses = c(
+    "Low employment capacity in Draž",
+    "High concentration of economic power in a few companies",
+    "Limited employment",
+    "High dependency on a few industries",
+    "Limited economic diversification"
+  ),
+  Opportunities = c(
+    "Integration of biodiversity and wetlands restoration into the regional economy",
+    "Promotion of sustainable resource use and waste management practices",
+    "Support for local restoration projects and eco-tourism",
+    "Engagement of businesses in environmental conservation",
+    "Development of agroecological practices",
+    "Enhancement of eco-friendly services and products"
+  ),
+  Threats = c(
+    "Economic downturn and market fluctuations",
+    "Environmental degradation and pollution",
+    "Climate change and extreme weather events",
+    "Loss of biodiversity and ecosystem services",
+    "Competition from global markets",
+    "Lack of investment in sustainable practices"
+  )
+)
+
+# Make flextable
+ft = qflextable(swot) |>
+  colformat_double()
+ft = set_table_properties(
+  ft,
+  width = 1,
+  layout = "autofit"
+)
+ft
+```
+
+# Summary
+
+Middle Donau demo region in this documents oncludes 4 municipalities - Draž, Bilje, Kneževi Vinogradi and Erdut. This are small municipalitis with low populatin numbers and negative deomgra
+
+
+# Appendinx
+
+```{r}
+#| label: tab-biggestfirms-revenue
+#| tab-cap: Biggest firms in the region by revenue
+
+largest_by_var(biggest, "revenue_2022")
+```
+
+```{r}
+#| label: tab-biggestfirms-asset
+#| tab-cap: Biggest firms in the region by asset
+
+largest_by_var(biggest, "asset_2022")
+```
+
+```{r}
+#| label: tab-biggestfirms-profit
+#| tab-cap: Biggest firms in the region by profit
+
+largest_by_var(biggest, "profit_2022")
+```
+
+### Look at
+
+- https://www.viadonau.org/en/home
+
+# Literatura
+
+::: {#refs}
+:::

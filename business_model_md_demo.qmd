@@ -1,0 +1,478 @@
+---
+title: "Business models"
+format:
+  docx:
+    reference-doc: C:/Users/Mislav/Documents/GitHub/dawetrest/D6.4/D6-4.docx
+---
+
+## MD Demo business model
+
+This way of looking at the business follows the layout from the Flourishing Business Canvas (FBC), which was explained earlier. Instead, it uses the FBC to make sure the new idea - the Green Hatchery - brings real benefits for nature, people, and money in the long run. But here, attention stays on how things stand right now. So there’s no jumping between different moments or timelines. What matters is today’s reality, not guesses about what might come later.
+
+The Green Hatchery counts as a main outcome at the Middle Danube test area - seen as having strong market chances alongside solid development progress, likely hitting TRL 7 to 8. While it's built for real-world use, its readiness stands out compared to similar projects in the region. Because of its advanced stage, it’s more than just an idea on paper - it works where it matters. Though still part of a demo setup, it already shows how green tech can move fast from concept to action.
+
+We’ll display the entire business setup on a single canvas - yet go deeper into each part using step-by-step breakdowns.
+
+## Flourishing Business Canvas: MD Green Hatchery (Green Hatchery - Fish re-population for local biodiversity)
+
+<br>
+
+## MD Green Hatchery Flourishing Business Canvas - Detailed Elaboration
+
+<br>
+
+### 1. Ecosystem Actors
+
+<br>
+
+Ecosystem actors are all the humans and non-humans who may have an interest in the fact that Green Hatchery business exists. The goal of the bussiness is to craeate and deliver value to actors, so their **need** is better met than without the project. Human Actors are any individual, grouping of people, market segments, community, any type of organisation (not-for-profit, for profit, public, or government). Non-human Actors are anything else that may impact or be impacted by this business (plants, animals, environment in general).
+
+#### Aquatic Ecosystem and Wildlife
+
+These are the non-human actors and natural resources that the Green Hatchery aims to protect and restore, which are vital to the business's regenerative purpose. At the core is the Topoljski Dunavac side-channel ecosystem – its water, sediments, and ecological processes. Native **fish species** (e.g. wild carp, tench, pike-perch, and other cyprinids) are key actors, as the hatchery exists for their propagation. Also crucial are the **wetland birds** (heron, stork, ibis families) and other fauna (amphibians, aquatic invertebrates) that rely on the fish and wetland for food and habitat. Even the **vegetation** (water plants, reed beds, riparian forests) is an actor, as it provides habitat structure and water quality regulation. These non-human actors have “needs” to survive and flourish (food, habitat, clean water), which the project aims to support. Additionally, the hydrological system (water levels, flow, connectivity) and the broader climate system (temperature, drought, extreme weather) act as non-human actors that shape and are shaped by the hatchery’s ecological outcomes.
+
+#### Local Community (NGO/Fishery Association)
+
+These groups usually stand in for local or eco concerns. Though plenty of NGOs might play a part, fishing-focused ones likely lead the pack. The people living in Draž and surrounding Baranja villages constitute another actor group. They include local **residents and landowners** (some may live adjacent to the wetland or use it traditionally), as well as **local fishermen** who have cultural and livelihood ties to these waters. The community’s well-being is intertwined with the health of the environment and the opportunities the project creates.
+
+#### Visitors and Tourists:
+
+Tourism is one of the main ecnomic sector in the area. During meetings and survezs, local takeholders emphasized thez goal is to develope tourism in the future. Better fish cultivation means more fish in wetlands, which means more fish, more birds and highet biodiversitz in general. This motivates nature enthusiasts, anglers and eco-tourists who come (or will come) to the area form an important set of actors. They seek recreational and educational experiences. Their presence and behavior can impact the ecosystem (positively, through citizen science or funding conservation, or negatively if thez decrease nature compnent of the wildlife). They are potential customers whose satisfaction and support are important for the project's success.
+
+#### Governance and regulatory actors
+
+These actors—from local government to international policy bodies—determine the legal, regulatory, and policy context in which Green Hatchery business operate. This primarly includes local authorities, that is The Municipality of Draž (MunDRAZ), an associated partner, where supporting activities took place. They are essential for securing permits and local compliance. National bodies (Ministry of Environment or Agriculture) and EU bodies (the EU Mission program officers) also play a role as actors providing oversight, funding, and policy context. They are concerned with the project meeting regulatory standards and broader environmental objectives. Associated regions should also be included here. These are entities that replicate the MD Demo's results, such as municipalities and regional authorities that applied for Financial Support to Third Parties (FSTP) from countries like Bosnia & Herzegovina. Additionally, water management authorities (e.g., Hrvatske Vode) and protected-area administrations—where relevant—play critical regulatory roles in water use, stocking permissions, and biodiversity protection.
+
+#### Business Sector
+
+This includes the private business subjects that will apply green hatchery business model in the future. This includes Local SMEs and Entrepreneurs. Target groups who will implement the resulting SME-adaptable business model for local economic gain and job creation. Another important group here are suppliers, who provdies products and services to the green hatchery business. Future buyers (restaurants, markets), and innovation partners such as universities and research institutes, also act as ecosystem actors because they influence technology development, market demand, and operational practices.
+
+By recognizing this full spectrum of ecosystem actors, the hatchery’s business model can be attuned to the interplay between people, nature (wetlands), and the project’s operations. In the next sections, we continue with the needs and engagements of these actors.
+
+<br>
+
+### 2. Needs
+
+<br>
+
+The Needs module in the Flourishing Business Canvas (FBC) defines the critical problems, desires, or unmet requirements of the ecosystem actors that the enterprise is specifically designed to address or fulfill. Needs are fundamental because they provide the core rationale for the business's existence; an Actor will only engage or become a Stakeholder if they believe the enterprise will help them meet one or more of their needs. The Green Hatchery business is designed to meet critical, interconnected needs in the Middle Danube (MD) Demo region, from ecological preservation to socio-economic development.
+
+#### Ecological and Environmental Needs
+
+The core purpose of the DaWetRest project is the protection and restoration of wetlands and flood plains and their biodiversity. The Green Hatchery addresses specific ecological deficiencies in the MD Demo site. The first most obvious need is **wetland ecosystem need**. This is the need for restauration to better state. This includes the need for *repopulation of native fish* (to fill an ecological niche and stabilize food webs) and *habitat quality improvement* (clean, oxygen-rich water and suitable grounds). There is an identified need to restore wetlands where approximately 80% of Europe's wetlands have disappeared over the last 100 years, leading to a reduction in the number, size, and quality of marshes and lakes. The project seeks the revitalization of these areas, which is necessary for their future nature protection. The **fish species** themselves need sufficient food, appropriate water conditions, and safe breeding habitats – conditions that have been degraded in past decades. The **wetland birds** need an abundant food supply (fish and aquatic life) and undisturbed nesting areas. Overall, the ecosystem needs interventions that support biodiversity and nature strength. Another important need are environmental threats, such as pollution and invasive species, which are exacerbated by intensive agriculture practices and climate change effects. Additionally, green hatchery needs stable horological system, while climate system is important because of possible temperature stresses and droughts.
+
+#### Community Needs
+
+The **local community** needs sustainable opportunities. Many rural communities in Baranja face economic challenges. So, there is a need for local jobs and income sources that do not decrease natuire componenet of the development. Culturally, locals need to maintain their connection to the land and water – they value the Danube heritage and have a need to see it preserved. There may also be a need for youth engagement to counter rural out-migration – projects like this can inspire younger generations to stay or return. In early meetups with local stakeholders, fish NGO's were most interesed in Green Hatchery business. they are emmotionally linked to to Donau and river fish as a food.
+
+### Visitor Needs
+
+**Tourists and anglers** needs. People who want to visist the place and have nice experience. Anglers specifically need *healthy fish populations* to have successful catches (especially if sport fishing is a draw). Nature tourists need *rich wildlife sightings* (birds, scenic landscapes) and *educational information* to appreciate the site. All visitors need the area to be accessible and safe (basic infrastructure like trails, signage, perhaps viewing platforms or fishing piers). They also expect the site to be well-managed so that their activities are sustainable and the natural beauty is maintained for future visits.
+
+#### Partner and Organizational Needs
+
+The **project partners** and implementing team have needs related to successfully running the hatchery. They require *technical knowledge and skills* to breed fish and maintain equipment. Partners like FSB and CEKOM need *research data and innovation outcomes*. Local NGOs (fishing clubs) need *collaboration and influence* in the project to ensure it aligns with on-the-ground realities.
+
+#### Regulatory and Societal Needs
+
+Authorities and society at large have a need to meet conservation and climate targets. Regulators need the project to maintain compliance with laws.. More broadly, society needs successful examples of businesses that integrate environmental and social value.
+
+By listing and sddressing all this needs, the green hatchery business can manifest it's importance for various actors. The main service it provides (fish production, tourism experiences, education) explicitly aims to meet these needs: satisfy visitors, restaure wetlands, and revitalize communities.
+
+<br>
+
+### 3. Stakeholders
+
+<br>
+
+A Stakeholder is an actor (individual, group, or organization) who has a specific stake in the outcomes of the enterprise and assumes a defined role within or around it. They are more than just observers—they are engaged participants who believe their needs can be better fulfilled through the existence and activities of the business. In contrast to broader ecosystem actors, stakeholders are directly involved and necessary for the organization’s success.
+
+We will classify stakeholders to 3 groups: core stakeholders, strategic stakeholders and porential stakeholders acording to 2 criteria: power and interest.
+
+#### Core Stakeholders (High Power & High Interest)
+
+This includes project consortium and core team. This group is critical for the success of the Green Hatchery bussiness and is actively engaged in development, operations, and decision-making. This includes the **DaWetRest project partners** who established and run the hatchery. The Faculty of Mechanical Engineering and Naval Architecture (FSB) at University of Zagreb is a stakeholder providing technical leadership (designing the recirculation system, monitoring tech, etc.). The **Adriatic Innovation Center** and the **Odra Angling Association** are also core stakeholders that helped launch the Green Hatchery[[voda.hr]{.underline}](https://www.voda.hr/hr/projekt/dawetrest#:~:text=As%20part%20of%20the%20activities,ecosystems%20along%20the%20Danube%20River){alt="https://www.voda.hr/hr/projekt/dawetrest#:~:text=As%20part%20of%20the%20activities,ecosystems%20along%20the%20Danube%20River"}. They share in decision-making and bring expertise (innovation in sustainable aquaculture, and practical fisheries knowledge respectively). These stakeholders are invested in achieving the project outcomes and proving the concept.
+
+Some stakeholders from group municipality and government agencies also belongs here. The **Municipality of Draž** and relevant county agencies are stakeholders because they likely provided permits, possibly land or infrastructure support, and have an interest in the project’s success (as it benefits the local economy and environment). **Hrvatske Vode** (Croatian Waters), the national water management authority, is a stakeholder given their mandate to manage water bodies – they are involved in or informed about the restoration of the Dunavac channel and the hatchery’s water use.
+
+### Strategic Stakeholders (High Power & Low Interest)
+
+These stakeholders have influence over funding, regulation, and policy but are less involved in daily activities.
+
+National ministries (Environment, Agriculture) and EU Mission representatives, while not on-site, are key stakeholders in terms of oversight and broader impact – their stake is largely in seeing policy goals met and funds well-spent. Ministry of environmental protection and green transition Supports national-level alignment with biodiversity policy. Espically important are **suppliers** who provides goods an services for the green hatchery business. The most important suppler currently is **G2O d.o.o.:**, technology provider responsible for supplying and installing key aquaculture equipment - supports technical feasibility and innovation.
+
+### Potential Stakeholders (Low Power & High Interest)
+
+These actors are interested in outcomes and benefits, especially at the community level, but have limited direct power.
+
+Most stakeholde in this grouop are local fisheries NGOs and associations. Regional groups such as county-level **sports fishing clubs and fisheries associations** are stakeholders deeply involved in implementation. For example, local NGOs in Osijek-Baranja responsible for fisheries are collaborating to release the hatchery-reared fish[[voda.hr]{.underline}](https://www.voda.hr/hr/projekt/dawetrest#:~:text=In%20collaboration%20with%20local%20fisheries,families%20Ardeidae%2C%20Ciconiidae%2C%20and%20Threskiornithidae){alt="https://www.voda.hr/hr/projekt/dawetrest#:~:text=In%20collaboration%20with%20local%20fisheries,families%20Ardeidae%2C%20Ciconiidae%2C%20and%20Threskiornithidae"}. These stakeholders contribute volunteer labor, traditional knowledge, and help ensure the project aligns with local conservation efforts. In return, they gain improved fish stocks and possibly a role in managing the resource (co-management). Second stakeholders are **eco-tourists and anglers** **Visitors** who come for sport fishing or nature tourism are a type of stakeholder – essentially the customers of the services offered. They exchange money for the experience provided by the hatchery’s existence (catching fish, touring the facility, etc.). Their satisfaction influences word-of-mouth and future demand. Responsible anglers could also become partners in conservation (for instance, through catch-and-release practices or citizen science reporting of fish tags), blurring the line between customer and partner stakeholder. We can say **local community members** are stakeholders too. The people living nearby (Draž and nearby settlements) are stakeholders who may experience direct impacts. Some individuals might be employed by the project (thus **employees** are stakeholders), or supply services (e.g. a local contractor maintaining the facility, or local farmers providing grain for fish feed). **Residents** have a stake in how the project affects their environment (e.g. improved water quality, or any changes in land use). They also stand to benefit from increased tourism. Their support or opposition can influence the project’s success, making them de facto stakeholders The last are associated regions. They can try to replicate green hatchery models in other regions, particularly those receiving FSTP support from Bosnia & Herzegovina and beyond. The **Kopački Rit Nature Park Authority** is another stakeholder, as Topoljski Dunavac is hydrologically connected to the larger protected wetlands; park managers would coordinate on biodiversity goals and ensure the project supports the park’s conservation objectives.
+
+Each of these stakeholders has specific needs, expectations and contributions. The goal is to balance those interests without or with least possible conflicts between them.
+
+<br>
+
+### 4. Relationships
+
+<br>
+
+The **relationships** block describes how the Green Hatchery interacts with its stakeholders to maintain their support, satisfaction, and active participation. Given large number of stakeholders and their complicated interactions few strategies are applied.
+
+**Co-Creation & Collaboration:** Co-creation is important concpet in flourishing buseinss model canvas. It means insiders of Green Hatchery business cooperate with outsiders in operational and strategic planning and implementations. This approach is treating partners and community members as **co-creators** of the project. For example, the project team works closely with **local fishing NGOs** in planning and executing fish releases (TODO: add reference here). There were regular coordination meetings At Demo site where all aspect of the business were discused. With shared responsibilities (like co-hosting events) the partners feel as part of the project. This collaborative relationship builds trust and aligns everyone on common goals (restoring fish and birds).
+
+**Community Engagement:** The goal of this relationship is to establish transparency and inclusion. Public meetings (e.g., at the Draž municipal hall) were held during project plannin (TODO: link here) to present plans (like the restoration of a nearby side-arm) and gather input. This open dialogue helps maintain a positive relationship with the community. Ongoing, the hatchery may host open-house days or volunteer opportunities (such as community fish release days or wetland clean-up events), turning local people into active supporters. By demonstrating tangible benefits (like better fishing or tourism income) and soliciting feedback, the project nurtures goodwill and local pride.
+
+**Customer Experience & Education:** For **visitors and tourists**, the relationship is managed by providing a **high-quality, educational experience**. Green Hatchey team trained guides or staff engage with visitors, offering tours of the hatchery facility, explaining the aquaculture process, and highlighting the ecological importance of the site. Sport fishers are engaged through a permit or reservation system that may include briefings on rules (catch-and-release, allowed areas) to ensure sustainable enjoyment. Maintaining an active online presence (via a website or social media updates under the DaWetRest umbrella) is also key – sharing success stories (e.g., bird sightings, fish growth updates) keeps potential visitors interested and informed.
+
+**Governance and Reporting:** With government bodies and funders, the relationship is more formal. The project team provides **regular reports and data** demonstrating progress toward goals (e.g., monitoring results of fish survival and bird populations). There is also a feedback loop: the team consults with park authorities and water managers to align hatchery operations with broader conservation plans (e.g., adjusting fish release timing to fit natural flood cycles or park guidelines). This cooperative relationship with authorities ensures ongoing support and the smooth issuance of permits in future.
+
+**Knowledge Network Relationships:** As a demonstration project, the hatchery cultivates relationships in a **wider knowledge network**. This includes collaborations with researchers (sharing data for scientific studies, hosting student projects or thesis work on-site) and exchanges with other wetland restoration projects. currently, there is a scientific paper in progress on green hatchery implementation. For instance, the team likely interacts with other **DaWetRest DEMO sites** and associated regions, providing updates and lessons learned. These relationships are maintained through workshops, conferences, and digital platforms, positioning the hatchery as a valued node in a learning community. Such relationships not only enhance the project’s credibility but also attract new ideas and potentially new funding or partners.
+
+Altogether, by actively managing relationships (through community meetings, visitor outreach, or transparent governance) the Green Hatchery ensures continued stakeholder engagement and adapts to their needs over time.
+
+<br>
+
+### 5. Channels
+
+<br>
+
+Channels act as ways - either real or online - that companies use to connect, share info, get products out, also build solid ties with people involved. They matter a lot since they directly affect how the whole business works. The DaWetRest initiative uses different pathways to share its tools - like plans or info - while building connections through advice sessions or workshops. One way leads to another, shaping how people interact and learn together.
+
+**Fish Release Channels:** To deliver the conservation value (fish populations) to the ecosystem, the project uses planned biannual stocking events as the channel. Hatchery-raised juvenile or adult fish are transported (via aerated tank trucks or containers) to strategic release points along the Topoljski Dunavac. This logistical channel is carefully managed to minimize stress to fish – timing releases in spring and fall when conditions are optimal. In essence, these events are the "distribution channel" for the core product (live fish) to the wild ecosystem. They are often done in collaboration with local NGOs and could double as public events, thereby also serving as community outreach channels (educating participants and media about the restoration).
+
+**Eco-Tourism & Recreation Channels:** To reach **tourists and anglers**, the project leverages **tourism networks and media**. This includes online channels: a project or municipal tourism website listing the Green Hatchery as a point of interest, social media pages showcasing the wetland wildlife, and possibly features on travel blogs or local news. Regionally, the initiative works with the **Baranja Tourist Board** and nature park visitor centers (like Kopački Rit’s info center) to direct interested visitors to Draž. Physical signals is another channel – for instance, signals on nearby roads pointing to the hatchery or interpretive panels at the site explaining the project. For anglers, channels might involve local fishing shops or angling forums where news about improved fishing spots is shared, as well as a permit system (perhaps available at a municipal office or online) that channels anglers to the site in a controlled manner.
+
+**Educational Outreach Channels:** The hatchery uses **educational channels** to deliver knowledge to students, researchers, and the public. This includes organizing school field trips (in coordination with local schools and universities), where students visit the hatchery and learn about wetland ecology – the “channel” here is direct on-site engagement facilitated by teachers and hatchery staff. Another channel is workshops or open seminars, possibly hosted at the community center or even virtually, where experts share findings (for example, presenting monitoring results to interested citizens or academics). Printed brochures or info booklets available at municipal offices or tourist info points serve as take-home channels to spread awareness about the project’s purpose and results.
+
+**Communications and Media:** Given the demonstrative nature of the project, communication channels are very important. The project team likely produces **regular newsletters or press releases** (often through the DaWetRest consortium communications) that highlight milestones like the hatchery opening, first release, notable species observed, etc. These are disseminated via email lists, the consortium’s website, and media outlets (press, environmental magazines). Local radio or TV may occasionally cover major events (like the opening ceremony or an annual “Wetland Day” celebration on-site), serving as mass communication channels to the broader public. Such media coverage helps rally support and recognition beyond the immediate stakeholder circle.
+
+By utilizing these diverse channels, the Green Hatchery tries to create balanced infromation channels to the public. Several channels are used to engage various stakeholders. If one channel is weak (e.g., fewer tourists in a season), other channels (like community programs or online engagement) keep value flowing and awareness high.
+
+<br>
+
+### 6. Value Co-Creations (Positive Outcomes)
+
+<br>
+
+**Value co-creation** refers to the positive value jointly created by the enterprise and its stakeholders – the mutual benefits and improvements that result from their interactions. The Dawetrest Green Hatchery generates numerous co-created values across environmental, social, and economic dimensions.
+
+**Ecological Value:** Here two side of co-creation are environemnt and GH buseinss. A wetland ecosystem is a prime co-creation of value between the green hatchery and nature. The busienss provides increase fish stock and active responsible management of fish species, while the environment responds with improved biodiversity. This yields value for the busienss (accomplisg goals) and value for nature (recovery). For example, as the hatchery reintroduces native fish, the ecosystem co-creates a balanced food web, resulting in cleaner water and robust fish populations that sustain themselves – a positive feedback loop beneficial to both the project (which can scale back intensive breeding over time) and the environment.
+
+**Food Web Support** Here two side of co-creation are community and wildlife. By boosting fish numbers, the hatchery and the wetland together co-create abundant food resources for predators like herons and storks. The value here is healthier bird populations and potentially higher breeding success for endangered species. This is co-created by the project (providing fish) and the birds/wetland (utilizing that food to thrive). In turn, the community gains value in the form of natural preservation – iconic bird species remain part of the local landscape for future generations to enjoy. The GH operates to increase the population of autochthonous cyprinid fish. The goal is to release adult fish into the Topoljski Dunavac and Šarkanj canal to increase the reserve of food for vulnerable and endangered waterfowls. This specifically benefits species from the Ardeidae, Ciconiidae, and Threskiornithidae families, while simultaneously decreasing pressure on the food capacity of the nearby Kopački rit Nature Park.
+
+**Knowledge and Innovation:** Here two side of co-creation are GH business and academia. The collaboration with research partners (FSB) co-creates new scientific knowledge (papers) and technical innovation. The hatchery provides a case studies and data; academic stakeholders provide analysis and expertise. Together they develop, for instance, more efficient low-energy pumping systems or better methods for raising sensitive species. This co-created knowledge is a valuable output that can be published or used elsewhere, benefiting the business (through improved operations and reputation) and the academic partners (through papers and real-world impact). TODO: Add refference for paper Carbon-Neutral Food and Energy Systems: Green Hatchery Framework
+
+**Recreational Value:** Here two side of co-creation are community and tourists. The project co-creates economic opportunities and recreation by inviting tourists and anglers into the stocked area. Tourists get the value of a memorable experience (fishing or wildlife watching), while their participation (and spending) co-generates income for local guides, B&Bs, and the enterprises. For instance, a guided fishing tour co-creates value: the angler enjoys a catch, the guide earns a living, and the fish (if released) continue to live – an ongoing value for the ecosystem.
+
+**Economic Value:** Beside recreational value, there are two 3 more economic values created by the project. First economic apect of value creation is fish local supply and food security. The operation of the GH co-creates value by ensuring the availability of fresh, locally sourced fish. The projected output capacity is 1200–1500 kg of fish per year. Second is tourism development with focus on sport fischeries that increase jobs and ecnomomic output.Third, replication can create value. Municipalities in Croatia and Serbia will prepare a proposal to scale up the green hatchery based on the DaWetRest approach in the future.
+
+**Social Capital and Partnerships:** Here two side of co-creation are GH business and local community. The main value created here is social value in the form of stronger local networks. Green Hatchery business interact with local NGO's and co-create social capital that manifests as, say, a local youth group getting involved in nature monitoring. Similarly, cooperation between cross-border or regional stakeholders is established to support community of practice. The goal is to tackle environmental challenges together.
+
+Altogether, the green hatchery is not just delivering several values to the customers in one way. It actively engages stakeholders to co-produce outcomes that none could achieve alone.
+
+<br>
+
+### 7. Value Co-Destructions
+
+<br>
+
+Despite positive aims, the project can produce negative outcomes and lead to value co-destruction. This include any negative value or harm that could be unintentionally generated through interactions. Identifying these risks allows for mitigation. Some potential co-destructions include:
+
+**Environmental Risks:** If not managed properly, the hatchery operations could co-destroy value for the ecosystem. For example, **disease transfer** is a risk – fish might introduce pathogens to wild populations, harming the very species we aim to save. To mitigate this, strict biosecurity and health screening of fish are necessary. Another risk is **genetic impact**: if hatchery fish are not genetically diverse or are selectively bred, their introduction could reduce the genetic fitness of wild stocks. The project must ensure it sources broad genetic stock and perhaps rotate breeding fish to avoid inbreeding. Additionally, any effluent or wastewater from the tanks, if released, could pollute local water; however, the design presumably recirculates or treats water, minimizing this co-destruction.
+
+**Economic Challenges:** The biggest chalange from economic perspective are financials. The business model aims to transition from initial grants to a long-term financial strategy centered on fish as main product. to continue financig from public source ther eshould be visibe outcomes like regenerative tourism with a focus on sport fisheries. For example, if tourist numbers don’t meet expectations, the revenue shortfall combined with high operating costs could lead to cutbacks or closure of the hatchery, wasting the initial investments and dashing community hopes. Stable income generation is another economic challange. The GH is explicitly dedicated to cultivating autochthonous cyprinid fish for restocking the natural ecosystem, prioritizing biodiversity improvement over mass commercial production.
+
+**Maintenance Issues:** If the ecosystem comes to rely on regular stocking (instead of natural recruitment), any interruption (due to funding gaps or technical failures) could leave the ecosystem in a potentially worse off if natural reproduction was not re-established. Likewise, the sophisticated equipment (pumps, alarms) carries risk of mechanical failure that could cause a mass die-off in the hatchery tanks, destroying the fish (value loss to project and nature). Redundancies like backup power and alarms (which exist) are in place to minimize this risk, but it remains an area of vigilance.
+
+**Social Tensions or Inequity:** There is a possibility of co-destroyed social value if certain stakeholders feel excluded or if benefits are not fairly distributed. For instance, if most tourism benefits go to outsiders or a few individuals, local residents might feel resentment, which erodes community cohesion. Also, local fishermen might worry that new rules (like catch-and-release or protected areas) limit their traditional practices – a perceived loss of value for them. The enterprise and community together might inadvertently create social conflict if communication falters. Proactively, the project seeks to avoid this by involving local stakeholders in decisions (so they co-own the rules) and ensuring any new income streams have local participation (thus sharing value to prevent envy or conflict).
+
+<br>
+
+### 8. Products & Services
+
+<br>
+
+The prodcut and services offered by DaWetRest Green Hatvhery are miltidimensional. They don't just include fish, but wider conservation services.
+
+**Native Fish Stock for Ecosystem Restoration:** The core “product” is the breeding and supply of native fish (e.g., common carp, tench, and other indigenous Danube species). Unlike a commercial fish farm that sells fish for consumption, this hatchery’s product is juvenile and adult fish for release into the wild. These fish are bred and raised to a hardy stage on-site, specifically to repopulate the Topoljski Dunavac and nearby waters. This service is provided to the ecosystem and indirectly to stakeholders like conservation agencies and local fisheries managers. In the future, the fish can be sell directly for food consumtpion or to other firms for additional cultivation.
+
+**Sport Fishing Experience:** Capitalizing on improved fish populations, the project offers regulated sport fishing opportunities. This can be seen as a service to recreational anglers – a form of regenerative tourism product. For example, catch-and-release fishing days might be organized, where anglers can fish in designated stretches of the Dunavac known to be stocked. They pay for permits or tours, and in return get a quality fishing experience (with a good chance of catching native species in a natural setting) guided by sustainable principles. This service is carefully managed to avoid overfishing; it’s as much about the experience as the catch, often emphasizing education on species and conservation. It is important to emphasize that Green hatchery business can be manaeged by NGO (in daWetRest case SRU Odra) or by a business subject. In frist case NGO can manage the green hatchery business (as is the case in DaWtrest) which means that can collect memebership fee as a source of financing.
+
+**Nature Tourism and Guided Tours:** For non-anglers, the hatchery provides nature tourism services. This may include guided tours of the hatchery facility itself – visitors can see the breeding tanks, learn about aquaculture technology, and perhaps observe juvenile fish rearing. Additionally, guides may take visitors on nature walks around the wetland, highlighting birdwatching spots and explaining the ecological restoration underway. There could be a small visitor center or interpretive trail as part of this service, offering informational displays. These tourism services can be fun for the families, school groups, and eco-tourists.
+
+**Research and Consulting Services:** Given the innovative nature of the Green Hatchery, it can offer expertise as a service. Project experts might provide consulting to other regions or groups interested in replicating the model (sharing guidelines on building a green hatchery”, designing monitoring plans, etc.).
+
+**Fish and Aquaculture Products (Potential):** In the future, the hatchery could produce limited commercial outputs to support its finances, as long as it doesn’t conflict with conservation. For example, it might grow some fingerlings or native fish for sale to local pond owners or conservation bodies in other regions. It could also pilot the cultivation of native fish for local cuisine on a small scale, partnering with local restaurants to feature a "Danube native fish" dish – thereby raising awareness through gastronomy.
+
+<br>
+
+### 9. Partnerships
+
+<br>
+
+Another important aspect of flourishing buseinss models are a strong network of **partnerships** with stakeholders that can generte knowledge, resources etc. Key existing and potential partners include:
+
+**Operational and technical Partners:** In DaWetRest project, by Nature of Agreement, developing of Green Hatchery is joint responsibility of SRU Odra that operates the facility and UZ-FSB who provides technical expertise (e.g., the digital portal platform) and manages the Set heat pump system and PVs for energy efficient supply. This guarantees the supply of the RAS technology and the green energy operation of the hatchery, which is a key competitive advantage. It is important to say that green hatchery business can be establish on more private basis instead, which will have good and bad aspects.
+
+**Academic & Research Partners:** The partnership with the **University of Zagreb (FSB)** is crucial. FSB provides engineering and scientific expertise for designing the hatchery system (e.g. water recirculation technology, monitoring equipment). They also help with data analysis and publish results, giving the project scientific credibility. Additional research partners could include biology departments (for fish health and ecology) and institutes like the **Ruđer Bošković Institute** (if water quality analysis is needed). Such partners ensure the project is grounded in sound science and can innovate.
+
+**Local NGOs and Community Organizations:** As noted, fisheries and angling clubs (e.g. ŠRU Odra, and Osijek-Baranja fishing associations) are active partners. Other kind od NGO's can contribute to the project. For example, Conservation NGOs like regional wildlife organizations or community associations (like a local eco-group or cultural association) can partner on events.
+
+**Government and Public Sector:** The **Municipality of Draž** is a key partner, possibly providing logistical support (access roads, utilities to the site) and integrating the project into local development plans. **Osijek-Baranja County** and **Hrvatske Vode** (water authority) partner by aligning the hatchery with regional water management and environmental strategies, potentially even providing technical support for the side-arm restoration. The **Kopački Rit Nature Park Authority** is a partner in coordinating conservation goals – they might partner to ensure that hatchery efforts complement the park’s management (e.g., avoiding species that might become invasive in the park, co-promoting eco-tourism in the region). On a higher level, the project is part of the **EU Mission “Restore our Waters”** network, essentially partnering with the European Commission and Mission Board. This partnership offers funding and a platform to share outcomes across Europe, as well as policy support.
+
+**Private Sector and Suppliers:** The hatchery relies on specialized suppliers for equipment and feed. For instance, a company providing **water pumps and aerators** (G20 d.o.o.) can be viewed as a partner if they offer training and maintenance support. There might be partnership potential with a **renewable energy provider** – for example, a solar panel company could partner to install solar cells at the site, powering the facility in exchange for publicity as a green energy champion. Local agricultural producers could partner by supplying environmentally friendly fish feed (e.g., locally grown corn or insect-based protein feed) – a partnership that could reduce costs and carbon footprint.
+
+**Tourism and Educational Partners:** The success of regenerative tourism services will depend on partnerships with the tourism sector. Local tour operators, travel agencies, or even international eco-tourism networks (like Birdlife’s travel arm or fishing tour companies) can partner to include the hatchery in their itineraries. On the educational side, partnerships with **schools and universities** ensure a steady stream of educational visits.
+
+**Replication and Network Partners:** In aiming to replicate the model, the hatchery engages partners in other regions. Under the DaWetRest project, **associated regions** and sister sites are partners who learn from and possibly share resources with the Draž hatchery. For example, a partner site in Hungary or Serbia might exchange fingerlings or coordinate release strategies for migratory fish.
+
+Each partnership is governed by mutual benefit: the hatchery gains support, expertise, or reach; partners gain results aligned with their interests (be it research outputs, conservation outcomes, or business opportunities). Future governance might formalize some of these partnerships (as described next) to ensure they persist beyond the initial EU project timeline.
+
+<br>
+
+### 10. Governance
+
+<br>
+
+The **governance** structure of the Dawetrest Green Hatchery defines how decisions are made and who holds influence. There are many stakeholders, so it is challenging to estalish inclusive and transparent governance structure. Key features and suggestions for governance include:
+
+**Operational Management:** The core responsibility for the Green Hatchery establishment and operational control lies with ŠRU ODRA (Sport Fishing Association Odra) and UZ-FSB (University of Zagreb, Faculty of Mechanical Engineering and Naval Architecture). ŠRU Odra provided the conceptual design and manages the facility's functionality, focusing on the breeding of indigenous fish species. Of course, replication entities (those who want to apply green hatchery business model after the DaWetRest project) can choose different approach. It can be completly private, in form of public-private partnerships or any other form.
+
+**Technological Governance:** UZ-FSB governs the integration of the energy efficient supply, including the set heat pump system and PVs.
+
+**Financial Governance and Sustainability:** A crucial aspect is how revenues and costs are managed. The governance structure for financial decisions is managed inside SRU Odra NGO, who manages the budget and ensures transparency in spending grant funds. Plans for sustainable financing in the future includes NGO member fees and revenues from fish selling to keep the hatchery running post-grant. If larger capital is needed (for equipment replacement in a few years), the governance board would collectively seek additional funding (writing grant proposals or soliciting sponsors), rather than leaving it to one entity. **Transparent Decision-Making:** Governance processes are kept transparent through regular reporting and meetings. All partners develope regular and ad hoc reports for EU institutions, detailing accomplishments, financial status, ecological impacts (fish survival rates, bird counts), and next year’s plan. After EU project is over, all news and QA's will be conducted in annuall meetings at least.
+
+<br>
+
+### 11. Resources
+
+<br>
+
+The resources includes all the assets that will provide future economic benefits and is required for the hatchery to function. Resources are often divide to physical, natural, human, financial, and informational resurces.
+
+#### Physical Infrastructure
+
+The project has established a state-of-the-art hatchery facility\* in Novo Čiče, Velika Gorica. This infrastructure forms the backbone of GH operations and includes advanced technological components.
+
+-   **Fish Rearing Tanks**
+    -   Four main broodstock tanks (≥ 5 m diameter, ≥ 1.3 m depth), partially installed underground and made of UV-resistant materials.
+    -   Four 2-m tanks (1 m height) and four 1-m tanks (0.5 m height) for fingerlings and juvenile rearing.
+    -   Total working water volume ≥ **100 m³**.
+    -   Equipped with swirl separators, protected central outlets, and centralized return pipes.
+-   **Recirculating Aquaculture System (RAS)**
+    -   Incubation system: 8 McDonald’s (or Zuger) jars + 3 Weiss jars.
+    -   **Filtration:** bead filter for solids; UV sterilizer for microbial control.
+    -   **Pumps:**
+        -   Two centrifugal pumps (≥ 60 m³/h at 7 m head, 3 kW),\
+        -   Frequency-regulated soft start, automatic redundancy, GSM alert system.
+    -   **Air Blowers:**
+        -   Two blowers (≥ 150 m³/h at 200 mbar, 5 kW), redundancy and GSM alarms.
+-   **Energy & Electrical Systems**
+    -   **20 kWp solar PV system** with battery storage covering \~88% of annual energy demand.
+    -   **Heat pump** system for temperature regulation and out-of-season spawning.
+    -   Separate electric control boxes for pumps and blowers with:
+        -   Heating and ventilation\
+        -   Frequency regulators\
+        -   GSM alarms for power or pressure loss
+-   **Safety, Security & Logistics**
+    -   Perimeter fencing for predator control and visitor safety.
+    -   Backup generator/battery ensuring critical system continuity.
+    -   Specialized aerated transport tanks for fish releases.
+    -   Hatchery building with:
+        -   Office/lab\
+        -   Feed and equipment storage\
+        -   Incubation and control equipment
+-   **Repurposing Existing Infrastructure**
+    -   Parts of the system were adapted from older aquaculture ponds or facilities, minimizing costs and environmental impact.
+
+------------------------------------------------------------------------
+
+#### Natural Resources (Biophysical Inputs)
+
+The hatchery relies on several natural stocks, which support the RAS system and the ecological restoration mission.
+
+-   **Freshwater**
+    -   High-quality water drawn from TODO: explain.
+    -   RAS technology significantly reduces total water extraction.
+-   **Indigenous Broodstock (Genetic Stock)**
+    -   Native cyprinid species used for spawning and conservation.
+    -   Represents critical genetic capital for biodiversity recovery.
+-   **Fish Feed**
+    -   The sole nutrient inflow to the system.
+    -   Currently commercial feed; opportunities for more sustainable (plant/insect-based) alternatives.
+-   **Environmental Context**
+    -   Solar energy powering PV system.
+    -   Climate/temperature shaping heating/cooling demand.
+    -   Soil and land supporting infrastructure and natural filtration.
+
+------------------------------------------------------------------------
+
+#### Human Resources
+
+The hatchery depends on skilled human potential and local engagement.
+
+-   **Operational Staff**
+    -   Aquaculture specialist (daily operations).
+    -   Technician/caretaker (maintenance + monitoring).
+-   **Volunteers & Community Support**
+    -   Local fishing associations (ŠRU Odra, Baranja NGOs).
+    -   University students (UZ-FSB, biology faculties) assisting with monitoring and research.
+-   **Expert Consultants**
+    -   Engineers (UZ-FSB) for RAS & energy system modeling.
+    -   Economists/social scientists for socio-economic analysis.
+
+------------------------------------------------------------------------
+
+#### Financial Resources
+
+The financial foundation is a mix of EU support, national contributions, and future revenue.
+
+-   **EU Horizon / DaWetRest Funding**
+    -   Main capital investment (\~€146,000) and early operational support.
+    -   Part of a \~€9 million multi-country project.
+-   **National & Local Funding**
+    -   Croatian ministries, county institutions, and municipal support (utilities, land, co-financing).
+    -   Membership fees
+-   **Future Revenue Streams**
+    -   Guided tours\
+    -   Sport fishing permits\
+    -   Educational workshops\
+    -   Donations and sponsorships
+-   **Additional Grants**
+    -   Climate, environment, and rural development funds for expansion and replication.
+
+------------------------------------------------------------------------
+
+#### Information & Digital Resources
+
+Information systems and technical knowledge are essential operational assets.
+
+-   **Monitoring Database**
+    -   Tracks water quality, fish growth, vegetation, soil, and bird populations on project level.
+    -   Potential cloud-based platform accessible to partners.
+-   **GSM-Based Monitoring System (in the future)**
+    -   Real-time sensor data on oxygen, temperature, pH, pump/blower status.
+    -   Automated alarms enabling immediate intervention.
+-   **Technical & Computational Models**
+    -   RAS optimization models\
+    -   Energy flow simulations (PV + pumps + heat pump)
+-   **Communication & Outreach Materials**
+    -   Websites, brochures and visitor signals.
+
+<br>
+
+### 12. Activities
+
+<br>
+
+The activities block enumerates the core actions the hatchery enterprise undertakes to deliver its value and achieve its goals. The activities of the Green Hatchery are divided into three main categories: Active Restoration (physical implementation and operation), Passive Restoration (scientific monitoring and strategic planning), and Exploitation (business development and dissemination).
+
+#### I. Active Restoration and Operational Activities
+
+These activities involve the physical construction, technical operation, and primary function of breeding fish stock. The establishment and operational control are managed by ŠRU ODRA and UZ-FSB. 1. Infrastructure and Construction (T4.4 / T5.1.2): ◦ Construction works for building the Green Hatchery Complex at the location Novo Čiče in Velika Gorica. ◦ Procurement and installation of RAS equipment (e.g., incubation system, Bead filter, UV steriliser, pumps). ◦ Installation of the green energy supply including the Set heat pump system and PVs for energy efficient operation. 2. Hatchery Operation (T5.1.2): ◦ Putting the Green Hatchery into operation. ◦ Managing the Recirculating Aquaculture System (RAS), which includes filtration, sterilization, pumping, and water temperature regulation (controlled by the heat pump). ◦ Monitoring technical system status using GSM alert systems to detect power outages or pressure drops, ensuring immediate malfunction reporting. 3. Fish Cultivation and Stocking: ◦ Cultivation and reproduction of autochthonous cyprinid fish populations in the complex. ◦ Preparing and conducting the release of adult fish into the Topoljski Dunavac and Šarkanj canal ecosystems (starting in spring and autumn from the year 2025). 4. Fish Release Operations: ◦ At scheduled times (twice a year, typically spring and fall), the hatchery conducts stocking events to release fish into the wild. The team coordinates with local NGOs and authorities on timing and locations – for instance, choosing a day when water levels are suitable and predators won’t immediately overwhelm the released fish. ◦ During each event, hundreds of kilograms of fish are released (approximately 600 kg per event to total \~1,200 kg/year). This activity is both technical and public-facing: it often serves as a media or community event 5. Facility and Equipment Maintenance \* Running a hatchery means constant maintenance activities to ensure reliability. \* Daily, staff clean the tanks (remove waste, change or flush water if it’s a flow-through system, clean biofilters if recirculating). They inspect pumps, aerators, and sensor equipment for proper function. Preventative maintenance like replacing pump impellers or cleaning aeration stones is scheduled regularly.
+
+#### II. Passive Restoration and Scientific Activities
+
+These activities are crucial for monitoring the efficacy of the business. 1. Data Analysis and Reporting: ◦ Technical reports (for the EU funders, for local authorities, for scientific purposes) that document outcomes like "X number of fish released, Y% survival after 3 months" or "bird counts increased by Z% over 2 years". adjusting internal protocols (e.g., if analysis shows one species had poor post-release survival, they might alter the size at release or season) 2. Marketing and Networking: \* Updating social media with success stories or beautiful nature photos, maintaining a webpage, and engaging journalists for coverage. Networking with other similar initiatives (attending conferences, exchange visits with other hatchery projects) is another activity. 3. Governance and Administration: \* Meetings, administrative tasks like budgeting, procurement of supplies (feed, fuel, parts), and ensuring regulatory compliance (filing permit renewals, etc.). These behind-the-scenes activities keep the core business running smoothly.
+
+<br>
+
+### 13. Biophysical Stocks
+
+<br>
+
+The **biophysical stocks** are the natural capital inputs and stocks in the environment that the hatchery draws upon or affects. In the context of this project, important biophysical stocks include:
+
+**Water Resources:** Freshwater is the most critical non-living stock required for the Recirculating Aquaculture System (RAS) operation, including the incubation and breeding tanks. The RAS design, including filtration (Bead filter) and recirculation pumps, ensures high water conservation. This system is a proactive strategy to reduce water consumption compared to conventional hatcheries.
+
+**Fish (Breeding Stock):**: The initial broodstock required to start the hatchery, and the resulting autochthonous cyprinid fish produced and released, represent a living biophysical stock. The GH is established to produce and preserve the quality and quantity of this stock. By producing native fish in a controlled environment, it lowers the pressure on natural fish stock in the Topoljski Dunavac. Endangered waterfowls (Ardeidae, Ciconiidae, Threskiornithidae families) are a living stock dependent on the successful production of the GH. The hatchery's product serves as natural food for these waterfowls, directly supporting their population numbers.
+
+**Nutrient Stock (Chemicals and Feed):** Fish feed is the sole source of new nutrients (such as nitrogen) in the GH's operating model. The system integrates nutrient recycling. This closed-loop approach achieves a high Nutrient reuse efficiency (∼85% of feed-nitrogen), which minimizes the amount of harmful chemical nutrients returned to the biosphere as waste.
+
+**Land and Technical Materials Stock:** The ground at Novo Čiče and the materials used for the physical construction (tanks, pumps, pipes, sensors) are finite biophysical stocks. The tanks are constructed from UV-resistant materials, designed for durability, contributing to the principle of "slowing" resource loops. The soil in the surrounding area is monitored for quality.
+
+**Wildlife Populations:** The bird populations and other wildlife can be seen as stocks in the environment. The herons, storks, and others have baseline population levels that the project hopes to increase by providing more food (fish). These animal populations are regenerative stocks – given more resources, they can produce more offspring and grow. Monitoring their numbers is like tracking a natural capital index; if the stock of birds increases, the main goals of the buseinss is fullfilled.
+
+Green hatchery uses biophysical stock responsibly. The business improves fish and bird stocka which increasos region natural capital.
+
+<br>
+
+### 14. Ecosystem Services
+
+<br>
+
+Ecosystem services are the benefits that people and other organisms obtain from ecosystems. The Green Hatchery both relies on certain ecosystem services and enhances others through its operations. Key ecosystem services associated with this initiative include:
+
+**Provision of Food:** The most direct contribution of the green hatchery is restoring the natural production capacity of the ecosystem by culturing native fish. This output serves as natural food for endangered waterfowls, which is a core ecological goal of the intervention. The floodplain (Topoljski Dunavac) provide something we can call *habitat provisioning* – it offers feed for fish, and feeding and nesting areas for birds.
+
+**Water Quality Regulation:** Wetland ecosystems naturally perform *water purification* by cycling nutrients and trapping sediments. A healthy fish community can contribute to this regulating service. For example, benthivorous fish (those that stir the sediment) can help control excess nutrient build-up, and predatory fish can prevent algal blooms by consuming zooplankton predators. The hatchery’s effect of improving the ecological balance may enhance the wetland’s ability to regulate water quality – leading to clearer water with balanced algae levels.
+
+**Climate Regulation and Carbon Sequestration:** The GH contributes to climate resilience. Solar panels are used in production process which decreases emissions by 80–90% compared to a conventional system.
+
+**Recreation and regenerative tourism** The green hatchery is a crucial part of the regenerative business model focused on Regenerative Tourism with a Focus on Sport Fisheries. The enhanced fish and waterfowl populations support recreational activities such as sport fishing and birdwatching. The beauty of the Baranja wetlands is preserved and improved, which is a great benefit local communuity encourage.
+
+<br>
+
+### 15. Costs
+
+<br>
+
+### CAPEX – Green Hatchery (Final)
+
+| Category | Item Description | Cost (€) |
+|----------------|----------------------------------------|----------------|
+| Water System | Centrifugal pumps – set of 2 units | 22,045.83 |
+| Aeration System | Aerators – set of 2 units | 22,144.58 |
+| Aeration System | Diffusers (aeration system) | 8,250.00 |
+| Breeding System | Fish breeding aquariums – 4 units | 34,059.90 |
+| Tanks & Containers | Containers Ø 2 m × H 1 m – 4 units | 9,510.42 |
+| Tanks & Containers | Containers Ø 1 m × H 0.5 m – 4 units | 6,221.87 |
+| Digital Monitoring | IT equipment (laptop, mouse, external memory) | 792.72 |
+| Construction | Construction material and field cleaning | 5,015.38 |
+| Waterfowl Monitoring | Telephoto lens | 9,965.00 |
+| **Total CAPEX** |  | **117,005.70** |
+
+### OPEX – Green Hatchery (Annual)
+
+| Category                   | Item Description            | Annual Cost (€) |
+|----------------------------|-----------------------------|-----------------|
+| Green Hatchery Maintenance | Maintenance of the hatchery | 1,081.40        |
+| **Total OPEX (Annual)**    |                             | **1,081.40**    |
+
+### Staff costs
+
+TODO:
+
+<br>
+
+### 16. Goals
+
+<br>
+
+The Dawetrest Green Hatchery has the following main goals:
+
+1.  Incrase biodiversity by trstoring fish populations - Breed and release autochthonous cyprinid fish to improve biodiversity in the Topoljski Dunavac ecosystem.
+2.  Increase stock of wetland bird species - Increase food availability for herons, storks, ibises, and other vulnerable wetland birds by releasing \~1,200 kg of native fish each year.
+3.  Support regenerative tourism in the area - promote activities such as sport fishing, birdwatching, and educational tours to attract visitors and generate local income.
+4.  Support local engagement - provide jobs and offer environmental education for schools, residents, and visitors.
+5.  Ensure economic and financial viability - develop a sustainable financial model combining EU funding, fishing permits, education programs, and local partnerships.
+6.  Promote knowledge sharing and replication - Share methods, results, and best practices with other communities to expand wetland restoration across Europe.
+
+<br>
+
+### 17. Benefits
+
+<br>
+
+**Benefits** refer to the positive outcomes and value generated by the hatchery initiative for various stakeholders and the system as a whole. The project’s benefits span environmental gains, social improvements, and economic value:
+
+**Environmental Benefits:** We have already explained all enviromental benefits of green hatchery business model. The primary benefit is a more resilient and better aquatic ecosystem in the Topoljski Dunavac. Increased native fish populations will contribute to improved water quality and ecological stability (as fish help control algae and support nutrient cycles). The boosted fish biomass provides a richer food source for predatory birds and other wildlife, thereby enhancing overall biodiversity.
+
+**Social Benefits:** Green hatchery creates opportunities for environmental education (school visits, volunteer events for fish release). Than, local residents benefit from new recreational opportunities (e.g. family-friendly fishing events, nature walks) and from the preservation of cultural traditions related to the Danube wetlands and fishing. The project also contributes to public health and enjoyment by protecting a clean, natural environment for people to enjoy.
+
+**Economic Benefits:** We can divide economic benefits to direct and indirect benefits. Direct benefits includes revenues from membership fees SRU Odra and main stakeholder collect from fisherman and from direct fish selling on the market in the future. Indirect economic benefits comes from business contribution to regenerative tourism and recreational tourism in Draž county area. Sport fishermen and nature tourists drawn to the area bring revenue to local guides, accommodations, and restaurants. The hatchery itself may create a few direct jobs (facility managers, aquaculture technicians, tour guides) and support indirect jobs in the hospitality sector. In addition, the project’s existence (with EU funding and future grants) injects investment into the region’s rural economy. Over time, if fish stocks become abundant, there could be sustainable fishing yields for local fishing communities (e.g.permit fees).
+
+**Institutional and Knowledge Benefits:** For the project partners and broader scientific community, the hatchery generates valuable data and know-how. Successful breeding of native species and monitoring results contribute to research on wetland restoration. Potential investors can follow green hatchery case and implement same business model on other pilot and sibling sites which can create all other aabove benefits for various areas in region.
+
+------------------------------------------------------------------------
+
+In conclusion, the Dawetrest Green Hatchery is much more than a fish breeding facility – it is a holistic enterprise that **interweaves ecological restoration with community development**. Through its 17 business model dimensions, we see a complex yet coherent picture: **stakeholders** ranging from fish to farmers are engaged; their **needs** are addressed via creative **value propositions** (fish stocking, eco-tourism, education); critical **activities and resources** are marshaled with an eye on sustainability; and the **value created** is shared broadly, while potential harms are carefully managed. Partnerships and good governance bind these elements together, ensuring the initiative remains adaptive and resilient. This flourishing business canvas not only guides the current project in Draž, but also offers a blueprint for how similar **nature-based enterprises** can be designed elsewhere – ultimately fulfilling the goal of replicability and scaling impact for healthier wetlands and communities well into the future.

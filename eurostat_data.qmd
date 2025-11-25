@@ -1,0 +1,349 @@
+---
+title: "Podaci Eurostat"
+format: html
+server: shiny
+execute:
+  echo: false
+  warning: false
+---
+
+```{r setup}
+#| context: data
+
+# Učitavanje potrebnih paketa
+library(shiny)
+library(ggplot2)
+library(readr)
+library(dplyr)
+library(ask)
+
+# Učitavanje podataka
+data_bd <- readRDS("data_eurostat/eurostat_bd.rds")
+data_emp <- readRDS("data_eurostat/eurostat_employment.rds")
+data_fert <- readRDS("data_eurostat/eurostat_fertility.rds")
+data_gdp <- readRDS("data_eurostat/eurostat_gdp.rds")
+data_crime <- readRDS("data_eurostat/eurostat_crime.rds")
+data_pop_change <- readRDS("data_eurostat/eurostat_pop_change.rds")
+data_pop_age <- readRDS("data_eurostat/eurostat_pop_age.rds")
+data_pop_structure <- readRDS("data_eurostat/eurostat_pop_structure.rds")
+
+# Funkcija za obradu podataka
+process_eurostat_data <- function(data) {
+  data %>%
+    as.data.frame() %>%
+    mutate(NUTS3 = ifelse(geo %in% c("Bulgaria", "Croatia", "Romania"), "no", "yes")) %>%
+    filter(NUTS3 != "no", !is.na(values)) %>%
+    mutate(Date = as.Date(paste0(time, "-01-01")))
+}
+
+# Obrada podataka koristeći funkciju
+filtered_data_bd <<- process_eurostat_data(data_bd)
+filtered_data_emp <<- process_eurostat_data(data_emp)
+filtered_data_fert <<- process_eurostat_data(data_fert)
+filtered_data_gdp <<- process_eurostat_data(data_gdp)
+filtered_data_crime <<- process_eurostat_data(data_crime)
+filtered_data_pop_change <<- process_eurostat_data(data_pop_change)
+filtered_data_pop_age <<- process_eurostat_data(data_pop_age)
+filtered_data_pop_structure <<- process_eurostat_data(data_pop_structure)
+
+```
+
+
+## Business and Employment Data
+
+```{r ui_gdp}
+
+#| panel: fill
+
+# Stvaranje izborne liste za "unit" - specifično za GDP
+choices_GDP <- unique(filtered_data_gdp$unit)
+
+# UI element za odabir unit-a - specifičan naziv za GDP
+selectInput('selected_unit_GDP', 'Select a unit for GDP:', choices = choices_GDP, selected = "Euro per inhabitant", width = '80%')
+
+# Izlazni grafikon za GDP
+plotOutput('gdp_plot')
+```
+
+Ovdje samo isprobavam tekst. Da sve radi.
+
+
+```{r ui_BD}
+#| panel: fill
+
+# Stvaranje izborne liste za indikatore - specifično za Business Demography (BD)
+choices_BD <- unique(filtered_data_bd$indic_sb)
+
+# UI element za odabir indikatora - specifičan naziv sa sufiksom BD
+selectInput('selected_indicator_BD', 
+            'Select an indicator for Business Demography:', 
+            choices = choices_BD, 
+            selected = "Net business population growth - percentage",  # Postavljanje prvog indikatora
+            width = '80%')
+
+# Izlazni grafikon za Business Demography (BD) - specifičan naziv
+plotOutput('business_demography_plot_BD')
+```
+
+```{r ui_emp}
+
+#| panel: fill
+
+# Stvaranje izborne liste za nace_r2 - specifično za Employment (EMP)
+choices_EMP <- unique(filtered_data_emp$nace_r2)
+
+# UI element za odabir NACE kategorije - specifičan naziv sa sufiksom EMP
+selectInput('selected_nace_EMP', 'Select a NACE category for Employment:', choices = choices_EMP, selected = choices_EMP[1], width = '80%')
+
+# Izlazni grafikon za Employment (EMP) - specifičan naziv
+plotOutput('employment_plot_EMP')
+```
+
+
+## Population
+
+```{r ui_pop_sex_age}
+#| panel: fill
+
+# Stvaranje izborne liste za 'sex' - specifično za Population by Age and Sex
+choices_sex <- unique(filtered_data_pop_age$sex)
+
+# Stvaranje izborne liste za 'age' - specifično za Population by Age and Sex
+choices_age <- unique(filtered_data_pop_age$age)
+
+# UI elementi za odabir spola i dobne skupine
+selectInput('selected_sex', 'Select sex for Population by Age:', choices = choices_sex, selected = choices_sex[1], width = '80%')
+selectInput('selected_age', 'Select age group for Population by Age:', choices = choices_age, selected = "Median age of population", width = '80%')
+
+# Izlazni grafikon za Population by Age and Sex
+plotOutput('pop_age_sex_plot')
+```
+
+```{r ui_pop_structure}
+#| panel: fill
+
+# Stvaranje izborne liste za 'indic_de' - specifično za Population Structure Indicators
+choices_pop_structure <- unique(filtered_data_pop_structure$indic_de)
+
+# UI element za odabir populacijskog indikatora
+selectInput('selected_indicator_pop_structure', 'Select population structure indicator:', choices = choices_pop_structure, selected = choices_pop_structure[1], width = '80%')
+
+# Izlazni grafikon za Population Structure Indicators
+plotOutput('pop_structure_plot')
+```
+
+```{r ui_pop_change}
+#| panel: fill
+
+# Stvaranje izborne liste za 'indic_de' - specifično za Population Change
+choices_pop_change <- unique(filtered_data_pop_change$indic_de)
+
+# UI element za odabir indikatora populacijske promjene
+selectInput('selected_indicator_pop_change', 'Select population change indicator:', choices = choices_pop_change, selected = choices_pop_change[1], width = '80%')
+
+# Izlazni grafikon za Population Change
+plotOutput('pop_change_plot')
+```
+
+```{r ui_fert}
+
+#| panel: fill
+
+# Stvaranje izborne liste za indic_de - specifično za Fertility (FERT)
+choices_FERT <- unique(filtered_data_fert$indic_de)
+
+# UI element za odabir indic_de - specifičan naziv sa sufiksom FERT
+selectInput('selected_indicator_FERT', 'Select fertility indicator:', choices = choices_FERT, selected = choices_FERT[1], width = '80%')
+
+# Izlazni grafikon za Fertility (FERT) - specifičan naziv
+plotOutput('fertility_plot_FERT')
+
+```
+
+## Societal and Crime Data
+
+```{r ui_crime}
+#| panel: fill
+
+# Stvaranje izborne liste za 'iccs' - specifično za Crime Data
+choices_crime <- unique(filtered_data_crime$iccs)
+
+# UI element za odabir vrste kaznenog djela (iccs)
+selectInput('selected_crime_type', 'Select a crime type:', choices = choices_crime, selected = choices_crime[1], width = '80%')
+
+# Izlazni grafikon za Crime Data
+plotOutput('crime_plot')
+```
+
+```{r server}
+#| context: server
+
+ 
+
+#----------# Gross Domestic Product (GDP) #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za GDP
+filtered_data_GDP <- reactive({
+  filtered_data_gdp %>%
+    filter(unit == input$selected_unit_GDP)
+})
+
+# Renderiranje grafikona za GDP
+output$gdp_plot <- renderPlot({
+  # ggplot(filtered_data_GDP(), aes(x = Date, y = values)) +
+  #   geom_line() +
+  #   facet_wrap(~ geo, scales = "free_y") +
+  #   labs(title = paste("Gross Domestic Product (GDP) -", input$selected_unit_GDP),
+  #        x = "Year",
+  #        y = input$selected_unit_GDP) +
+  #   theme_minimal() +
+  #   scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+  ggplot(filtered_data_GDP(), aes(x = Date, y = values, color = geo)) +
+    geom_line() +
+    # facet_wrap(~ geo, scales = "free_y") +
+    labs(title = paste("Gross Domestic Product (GDP) -", input$selected_unit_GDP),
+         x = "Year",
+         y = "Value") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+})
+
+#----------# Business Demography (BD) #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za BD
+filtered_data_BD <- reactive({
+  filtered_data_bd %>%
+    filter(indic_sb == input$selected_indicator_BD)
+})
+
+# Renderiranje grafikona za Business Demography (BD)
+output$business_demography_plot_BD <- renderPlot({
+  ggplot(filtered_data_BD(), aes(x = Date, y = values)) +
+    geom_line() +
+    facet_wrap(~ geo, scales = "free_y") +
+    labs(title = paste("Business Demography -", input$selected_indicator_BD),
+         x = "Year",
+         y = "Value") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+})
+
+#----------# Employment (EMP) #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za EMP
+filtered_data_EMP <- reactive({
+  filtered_data_emp %>%
+    filter(nace_r2 == input$selected_nace_EMP)
+})
+
+# Renderiranje grafikona za Employment (EMP)
+output$employment_plot_EMP <- renderPlot({
+  ggplot(filtered_data_EMP(), aes(x = Date, y = values)) +
+    geom_line() +
+    facet_wrap(~ geo, scales = "free_y") +
+    labs(title = paste("Employment Data -", input$selected_nace_EMP),
+         x = "Year",
+         y = "Value (Thousand)") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+})
+
+## Server: Population Data and Fertility
+
+#----------# Population by Age and Sex #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za Population by Age and Sex
+filtered_pop_age <- reactive({
+  filtered_data_pop_age %>%
+    filter(sex == input$selected_sex, age == input$selected_age)
+})
+
+# Renderiranje grafikona za Population by Age and Sex
+output$pop_age_sex_plot <- renderPlot({
+  ggplot(filtered_pop_age(), aes(x = Date, y = values)) +
+    geom_line() +
+    facet_wrap(~ geo, scales = "free_y") +
+    labs(title = paste("Population by Age and Sex -", input$selected_sex, "/", input$selected_age),
+         x = "Year",
+         y = "Population") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "5 years")
+})
+
+#----------# Population Structure Indicators #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za Population Structure Indicators
+filtered_pop_structure <- reactive({
+  filtered_data_pop_structure %>%
+    filter(indic_de == input$selected_indicator_pop_structure)
+})
+
+# Renderiranje grafikona za Population Structure Indicators
+output$pop_structure_plot <- renderPlot({
+  ggplot(filtered_pop_structure(), aes(x = Date, y = values)) +
+    geom_line() +
+    facet_wrap(~ geo, scales = "free_y") +
+    labs(title = paste("Population Structure -", input$selected_indicator_pop_structure),
+         x = "Year",
+         y = "Value (Years)") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+})
+
+#----------# Population Change #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za Population Change
+filtered_pop_change <- reactive({
+  filtered_data_pop_change %>%
+    filter(indic_de == input$selected_indicator_pop_change)
+})
+
+# Renderiranje grafikona za Population Change
+output$pop_change_plot <- renderPlot({
+  ggplot(filtered_pop_change(), aes(x = Date, y = values)) +
+    geom_line() +
+    facet_wrap(~ geo, scales = "free_y") +
+    labs(title = paste("Population Change -", input$selected_indicator_pop_change),
+         x = "Year",
+         y = "Value") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "3 years")
+})
+
+#----------# Fertility Indicators #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za Fertility Indicators
+filtered_fert <- reactive({
+  filtered_data_fert %>%
+    filter(indic_de == input$selected_indicator_FERT)
+})
+
+# Renderiranje grafikona za Fertility Indicators
+output$fertility_plot_FERT <- renderPlot({
+  ggplot(filtered_fert(), aes(x = Date, y = values, color = geo)) +
+    geom_line() +
+    # facet_wrap(~ geo, scales = "free_y") +
+    labs(title = paste("Fertility Indicators -", input$selected_indicator_FERT),
+         x = "Year",
+         y = "Value") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+})
+
+## Server: Societal and Crime Data
+
+#----------# Crime Data #----------#
+# Filtriranje podataka unutar reactive() funkcije - specifično za Crime Data
+filtered_crime <- reactive({
+  filtered_data_crime %>%
+    filter(iccs == input$selected_crime_type)
+})
+
+# Renderiranje grafikona za Crime Data
+output$crime_plot <- renderPlot({
+  ggplot(filtered_crime(), aes(x = Date, y = values)) +
+    geom_line() +
+    facet_wrap(~ geo, scales = "free_y") +
+    labs(title = paste("Crime Data -", input$selected_crime_type),
+         x = "Year",
+         y = "Number of Offences") +
+    theme_minimal() +
+    scale_x_date(date_labels = "%Y", date_breaks = "2 years")
+})
+
+```
+
+

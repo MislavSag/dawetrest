@@ -1,0 +1,82 @@
+---
+title: "DaWetRest Business Model Questionnaire"
+author: "AIH"
+format: pdf
+editor: visual
+---
+
+# DaWetRest Business Model Questionnaire
+
+## Value Proposition
+
+1. What values do you create and offer in DaWetRest project?
+2. What specific problems are you solving for customers or beneficiaries?
+3. How do your activities contribute to long-term sustainability?
+4. Do you offer any unique or innovative solutions compared to other organizations working in similar areas?
+
+## Governance
+
+1. How is ownership structured for the resources (e.g., land, nature-based solutions) within DaWetRest?
+2. How is your organization structured and how are decisions made in this project?
+3. Do you conduct stakeholder consultations as part of your decision-making process?
+
+## Customers
+
+1. Do you have customers who pay for the value you create?
+2. What type of customers are you targeting?
+3. Which market segment are you targeting?
+
+## Beneficiaries
+
+1. Who benefits from the values your nature-based solutions (NBS) provide?
+2. What type of beneficiaries do you address? Individual people, groups,
+companies, other entities?
+
+## Customer Relationships and Channels
+
+1. How do you reach your customers or beneficiaries?
+2. What are the most effective communication channels for engaging your customers or beneficiaries?
+3. If applicable, channels for communication, distribution, sales, and after sales
+
+## Revenue Streams
+
+1. Do you generate revenue for DaWetRest project and how?
+2. What you estimate as annual financial revenue from these streams?
+3. Are there any alternative revenue models you are considering or already exploring?
+
+## Financing
+
+1. Do you receive financial support or funding for your work?
+2. Which funding sources could be the most reliable and sustainable for your operations?
+
+## Key Resources
+
+1. What key resources are necessary for your activites inside DaWetRest? Please list physical
+resources, financial resources, intellectual resources and human resources.
+2. Are there any resources you find particularly difficult to acquire?
+
+## Key Activities
+
+1. What are the main activities you carry out to make your (nature-based) solutions work? Think of co-implementation, production activities, marketing/sales activities,
+service provision activities, dissemination and networking, R&D etc.
+2. Which activities require the most resources and how do you manage these activities effectively?
+
+## Key Partners
+
+1. Who are your key partners for your activity, and what role do they play in your project?
+
+## Cost Structure
+
+1. What are your primary cost items (e.g., salaries, rent, investments)?
+2. What are the most significant challenges in managing your cost structure?
+3. Are you able to reduce costs with the implemented NBS (compared to
+earlier/others use types)?
+
+## Impact on Society and Environment
+
+1. What positive impacts does DaWetRest have on society and the environment?
+2. Are there any negative impacts of your work on society or the environment? How do you mitigate them?
+
+## Additional Comments
+
+Do you have any other feedback, suggestions, or insights for improving DaWetRest's business model or operations?

@@ -1,0 +1,79 @@
+---
+title: "Eurostat"
+format: html
+editor: visual
+execute:
+  echo: false
+  warning: false
+---
+
+```{r}
+library(eurostat)
+library(data.table)
+library(shiny)
+library(ggplot2)
+
+# Utils
+country_codes = c("BG", "RO", "HR")
+get_docs = function(x) as.data.table(search_eurostat(x))
+check_unique = function(dt) {
+  cols = setdiff(colnames(dt), c("values", "time"))
+  res = lapply(cols, function(x) unique(dt[[x]]))
+  names(res) = cols
+  return(res)
+}
+```
+
+
+## Business demography by size class and NUTS 3 regions (2008-2020)
+
+```{r}
+# Get bd_salge1_size_r and filter Bulgaria, Romania and Croatia
+get_docs("business demography by size class and NUTS 3 region")
+bd = get_eurostat("bd_esize_r3"
+                  # filters = list(geo = country_codes),
+                  # type = "label"
+                  )
+col_labels = label_eurostat_vars(id = "bd_salge1_size_r")
+setDT(bd)
+bd = na.omit(bd)
+check_unique(bd)
+```
+
+
+```{r}
+x = bd[indic_sbs == "Enterprises having at least one employee - number" & 
+     sizeclas == "Total"]
+# Make vertical bars
+ggplot(x, aes(x = geo, y = values)) + 
+  geom_bar(stat = "identity") + 
+  labs(title = "Enterprises having at least one employee - number",
+       x = "Country", y = "Number of enterprises")
+
+```
+
+
+```{r}
+selectInput(
+  inputId = "indic_sbs",
+  label = "Economical indicator for structural business statistics",
+  choices = bd[, unique(indic_sbs)],
+  selected = "Enterprises having at least one employee - number"
+) 
+
+mainPanel(
+  plotOutput(outputId = "bd_salge1_size_r", 
+             height = "300px"),
+)
+
+output$lineplot <- renderPlot({
+  plot(x = selected_trends()$date, 
+       y = selected_trends()$value, 
+       type = "l",
+       xlab = "Date", 
+       ylab = "Trend index")
+})
+```
+
+
+
