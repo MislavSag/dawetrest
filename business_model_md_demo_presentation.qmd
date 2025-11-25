@@ -1,0 +1,115 @@
+---
+title: "MD Demo Business Model Overview"
+format:
+  revealjs:
+    theme: simple
+    slide-number: true
+    toc: false
+    incremental: false
+---
+
+## Purpose
+- Summarize the "MD Demo business model" using the Flourishing Business Model Canvas.
+- One slide per canvas component to support quick presentation and discussion.
+
+## 1. Ecosystem Actors
+- Aquatic ecosystem and wildlife around Topoljski Dunavac: native fish, wetland birds, vegetation, and hydrological/climate context.
+- Local community and fishing NGOs with cultural and livelihood ties to the river and wetlands.
+- Visitors and tourists seeking recreation, education, and healthy nature experiences.
+- Governance and regulatory actors from Municipality of Draž to national/EU bodies plus water managers.
+- Business sector: local SMEs, future buyers (restaurants/markets), suppliers, and innovation partners.
+
+## 2. Needs
+- Ecological needs: restore wetlands, repopulate native fish, protect water quality, and buffer pollution or invasive threats.
+- Community needs: resilient local jobs/income, keep Danube heritage alive, engage youth, and avoid nature loss.
+- Visitor needs: healthy fish stocks, rich wildlife viewing, educational guidance, safe and accessible sites.
+- Partner/organizational needs: technical know-how, research data, and collaboration influence for NGOs and project partners.
+- Regulatory/societal needs: legal compliance plus examples that meet conservation and climate targets.
+
+## 3. Stakeholders
+- Core (high power & interest): DaWetRest partners (FSB, Adriatic Innovation Center, Odra Angling Association), Municipality of Draž, and Hrvatske Vode.
+- Strategic (high power & low interest): national ministries, EU Mission representatives, key suppliers like G2O d.o.o.
+- Potential (low power & high interest): local fisheries NGOs, eco-tourists/anglers, nearby residents/employees, replication regions, and Kopački Rit Nature Park.
+
+## 4. Relationships
+- Co-creation with fishing NGOs and partners through joint planning, releases, and shared events.
+- Community engagement via public meetings, open-house visits, and volunteer actions to keep transparency high.
+- Customer experience and education: guided tours, sport-fishing briefings, online updates with stories and results.
+- Governance/reporting loops with authorities and funders using monitoring data and regular updates.
+- Knowledge network links to researchers, students, and other DEMO sites for shared learning and innovation.
+
+## 5. Channels
+- Fish release events as the distribution and outreach channel for restocking efforts.
+- Eco-tourism channels: tourism boards, online media, signage, angling forums, and permit systems.
+- Educational channels: school/university field trips, workshops or seminars, brochures, and onsite interpretation.
+- Communications/media: newsletters, press releases, social media, radio/TV coverage of milestones.
+
+## 6. Value Co-Creations (Positive Outcomes)
+- Ecological gains: stronger fish populations, cleaner water, and resilient food webs supporting birds and other wildlife.
+- Food web support: restored prey base for herons, storks, and other wetland species.
+- Knowledge and innovation co-created with academic partners (new methods, papers, optimized energy/RAS design).
+- Recreational and economic value through tourism and sport fishing that circulate income locally.
+- Social capital from cross-sector partnerships and community participation.
+
+## 7. Value Co-Destructions
+- Environmental risks: disease transfer, genetic impacts from stock, or wastewater issues without strict controls.
+- Economic risks: reliance on grants, uncertain tourism revenue, and high operating costs could threaten viability.
+- Social tensions if benefits feel uneven or fishing rules are seen as restrictive; requires inclusive decision-making.
+
+## 8. Products & Services
+- Native fish production for ecosystem restoration in Topoljski Dunavac and nearby waters.
+- Regulated sport-fishing experiences built around conservation-focused permits or tours.
+- Nature tourism and guided hatchery/wetland visits for families, schools, and eco-tourists.
+- Research and consulting support for regions replicating the green hatchery model.
+- Potential limited fish/aquaculture products to sustain finances without harming conservation goals.
+
+## 9. Partnerships
+- Operational/technical: SRU Odra (operations) with UZ-FSB (RAS design, heat pump/PV integration).
+- Academic/research: University of Zagreb and other institutes for engineering, ecology, and analysis.
+- Community NGOs and fisheries associations partnering on releases and events.
+- Government/public sector: Municipality of Draž, Osijek-Baranja County, Hrvatske Vode, Kopački Rit Authority, EU Mission network.
+- Private sector suppliers and tourism/education partners; replication partners across associated regions.
+
+## 10. Governance
+- Operational control by ŠRU Odra with UZ-FSB overseeing technology and energy systems.
+- Financial governance through transparent budgeting, member fees, and diversified future revenue.
+- Regular reporting to EU/national bodies and annual partner meetings to keep oversight and alignment.
+
+## 11. Resources
+- Physical: RAS tanks, filtration/UV systems, pumps/blowers with redundancy, heat pump, solar PV (~88% energy), security, transport tanks, and onsite workspace.
+- Natural: freshwater intake, indigenous broodstock, fish feed, solar energy, and supportive land/climate context.
+- Human: aquaculture specialists, technicians, volunteers, students, and expert consultants.
+- Financial: EU Horizon/DaWetRest funding (~€146k), national/local support, member fees, planned revenue (permits, tours, workshops), and future grants.
+- Information/digital: monitoring databases, future GSM alerts, RAS/energy models, and outreach materials.
+
+## 12. Activities
+- Active restoration/operations: build the hatchery, install RAS and green energy systems, manage daily fish cultivation, and coordinate releases.
+- Passive restoration/science: ecological monitoring, data collection, and adaptive management informed by research.
+- Business and dissemination: tourism service delivery, stakeholder workshops, replication guidance, and promotional outreach.
+
+## 13. Biophysical Stocks
+- Maintains live fish stocks at various life stages and the freshwater volumes within the RAS system.
+- Supports broader wetland stocks of sediment, vegetation, and wildlife that interact with hatchery releases.
+
+## 14. Ecosystem Services
+- Provision of food for endangered waterfowl through increased native fish abundance.
+- Improved water regulation via healthier fish communities and wetland function.
+- Climate co-benefits from solar-powered operations reducing emissions versus conventional systems.
+- Recreation and regenerative tourism enabled by healthier wetlands and stocked fisheries.
+
+## 15. Costs
+- CAPEX highlights: pumps, aerators, tanks, aquariums, monitoring gear, construction materials (~€117k total).
+- OPEX: annual hatchery maintenance (~€1.1k) with staffing costs to be detailed.
+
+## 16. Goals
+- Restore native cyprinid populations and strengthen biodiversity in Topoljski Dunavac.
+- Increase food availability for wetland birds (~1,200 kg fish released annually).
+- Grow regenerative tourism (sport fishing, birdwatching, education) and local income.
+- Engage and educate residents while keeping financial sustainability in focus.
+- Share replicable methods and lessons with other communities.
+
+## 17. Benefits
+- Environmental: resilient aquatic ecosystems, richer bird populations, and better water quality.
+- Social: education opportunities, recreational access, and preservation of Danube-linked cultural ties.
+- Economic: membership fees, potential fish sales, and tourism spending that support local jobs and services.
+- Institutional/knowledge: monitoring data, research outputs, and a template for future green hatchery sites.
